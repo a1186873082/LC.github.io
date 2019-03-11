@@ -135,6 +135,9 @@
 
 
 
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -304,45 +307,19 @@
       
         
           
-            <h2 id="TCP-IP协议族"><a href="#TCP-IP协议族" class="headerlink" title="TCP/IP协议族"></a>TCP/IP协议族</h2><h3 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h3><p><strong>ip地址</strong>:ip地址指明了节点被分配到的地址</p>
-<p><strong>MAC地址</strong>:MAC地址指的是网卡所属固定地址</p>
-<p><strong>ARP协议</strong>:一种解析地址的协议,可以根据通信方的IP地址反查出对应的MAC地址</p>
-<p><strong>ip协议属于网络层</strong></p>
-<p><strong>ip协议的作用是把各种数据包发送给对方</strong>。而保证确实传送到对方那里，则需要满足各种条件,其中就包含着ip地址和mac地址，ip地址可以和MAC地址进行匹配 。<strong>ip地址会改变,但 MAC地址基本不会改变，</strong></p>
-<p>ip间的通信依赖于MAC地址，一般的都是通过MAC地址搜索到下一站的中转目标，通过ARP协议可以通过通信方的ip地址反查出对应的MAC地址</p>
-<h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><h3 id="TCP协议属于传输层"><a href="#TCP协议属于传输层" class="headerlink" title="TCP协议属于传输层"></a>TCP协议属于传输层</h3><p><strong>TCP协议提供了可靠的字节流服务</strong>:为了方便传输，TCP将大块数据切割成了报文段为单位的数据包进行管理。。</p>
-<p><strong>tcp的三次握手</strong>:为了确保数据能够准确无误的送达到目标处，tcp协议通过使用三次握手确保是否发送成功</p>
-<ol>
-<li><strong>发送方会发送一个带SYN标志的数据包给目标，</strong></li>
-<li><strong>目标接受到后会返回SYN/ACK标志的数据包以示传达确认信息给发送方，</strong></li>
-<li><strong>发送方收到后返回一个ACK标志的数据包，代表握手结束</strong></li>
-</ol>
-<p>如果在此过程中突然莫名中断,TCP协议会再次以相同的顺序进行发送相同的数据包</p>
-<p>pis:SYN为建立联机，ACK为确认</p>
-<p><strong>tcp的四次挥手</strong>:</p>
-<p><strong>第一次挥手</strong>：主机1向主机2，发送FIN报文段，表示关闭数据传送，并主机1进入FIN_WAIT_1状态，表示没有数据要传输了<br><strong>第二次挥手</strong>：主机2收到FIN报文段后进入CLOSE_WAIT状态（被动关闭），然后发送ACK确认，表示同意你关闭请求了，主机到主机的数据链路关闭，主机进入FIN_WAIT_2状态<br><strong>第三次挥手</strong>：主机2等待主机1发送完数据，发送FIN到主机1请求关闭，主机2进入LAST_ACK状态 </p>
-<p><strong>第四次挥手</strong>：主机1收到主机2发送的FIN后，回复ACK确认到主机2，主机1进入TIME_WAIT状态。主机2收到主机1的ACK后就关闭连接了，状态为CLOSED。主机1等待2MSL，仍然没有收到主机2的回复，说明主机2已经正常关闭了，主机1关闭连接。</p>
-<div align="center"><img src="..\img\tcp four refuse.jpg" style="zoom:100%"></div>
-
-<p>ps:</p>
-<p><strong>FIN_WAIT_1</strong>：表示等待对方的FIN报文。当SOCKET在ESTABLISHED状态时，它想主动关闭连接，向对方发送了FIN报文，此时该SOCKET进入到FIN_WAIT_1 状态<br><strong>FIN_WAIT_2</strong>：也表示等待对方的FIN报文。FIN_WAIT_2状态下的SOCKET，表示半连接，也即有一方要求close连接，但另外还告诉对方，我暂时还有点数据需要传送给你，稍后再关闭连接。<br><strong>CLOSE_WAIT</strong> : 这种状态的含义其实是表示在等待关闭。你回复一个ACK给对方，并进入CLOSE_WAIT状态。接下来就是查看你是否还有数据要发送给对方，如果没有，就可以close这个socket，并发送FIN给对方，即关闭连接。<br><strong>CLOSING</strong>：表示主机1给主机2发送FIN后，并没有收到主机2回应的ACK，而收到了主机2发送的FIN。表示双方同时close一个socket，出现同时发送FIN现象。<br><strong>LAST_ACK</strong>:  发送FIN报文后，等待对方的ACK报文，当收到ACK报文后，进入到CLOSED状态。 </p>
-<p><strong>TIME_WAIT</strong>:  表示收到了对方的FIN报文，并发送出了ACK确认，等2MSL后即可回到CLOSED可用状态了。如果FIN_WAIT_1状态下，收到了对方同时带FIN标志和ACK标志的报文时，可以直接进入到TIME_WAIT状态。</p>
-<h2 id="DNS协议"><a href="#DNS协议" class="headerlink" title="DNS协议"></a>DNS协议</h2><h3 id="DNS协议和HTTP协议都处于应用层"><a href="#DNS协议和HTTP协议都处于应用层" class="headerlink" title="DNS协议和HTTP协议都处于应用层"></a>DNS协议和HTTP协议都处于应用层</h3><p><strong>DNS协议</strong>：DNS协议主要通过域名查找对应的ip地址，或逆向从IP地址反查域名的服务</p>
-<p>计算机适合处理IP地址，但是对于字母配合数字的域名就比较困难了，所以要依靠DNS五福提供处理</p>
-<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><p><strong>职责</strong>：生成针对目标web服务器的Http请求报文。</p>
-<h2 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h2><p><strong>URI就是某个协议方案表示的资源的定位标识符，URL和URN属于URI的子集</strong>；</p>
-<p>绝对URI：</p>
-<p><a href="http://user:pass@www.baidu.com:80/dir/index.html?uid=1#ch1" target="_blank" rel="noopener">http://user:pass@www.baidu.com:80/dir/index.html?uid=1#ch1</a></p>
-<p>其中:</p>
-<p>http:协议</p>
-<p>user:pass是登录信息</p>
-<p><a href="http://www.baidu.com：是服务器域名" target="_blank" rel="noopener">www.baidu.com：是服务器域名</a></p>
-<p>80：是服务器端口号</p>
-<p>/dir/index.html：是资源存在于服务器上的路劲</p>
-<p>uid=1:针对指定资源传入的任意参数</p>
-<p>ch1：片段标识符。使用片段标识符通常可以标记出已获取资源中的子资源</p>
-
-          
+          TCP/IP协议族IPip地址:ip地址指明了节点被分配到的地址
+MAC地址:MAC地址指的是网卡所属固定地址
+ARP协议:一种解析地址的协议,可以根据通信方的IP地址反查出对应的MAC地址
+ip协议属于网络层
+ip协议的作用是把各种数据包发送给对方。而保证确实传送到对方那里，则需要满足各种条件,其
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/11/图解https/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -460,152 +437,21 @@
       
         
           
-            <h1 id="面试经历"><a href="#面试经历" class="headerlink" title="面试经历:"></a>面试经历:</h1><h2 id="2018-05"><a href="#2018-05" class="headerlink" title="2018-05"></a>2018-05</h2><ol>
-<li>数据库。sql 语句查询。要经常的练习。</li>
-<li>jdbc  mybaits hiernate 事务的实例代码。</li>
-<li>spring bean 的加载过程。</li>
-<li>sso 单点登录的原理。client 和server 详细描述</li>
-<li>spring security  的权限管理。</li>
-<li>spring 的bean  是线程安全的吗。</li>
-<li>cxrf  攻击是怎样的。</li>
-<li>项目开发的详细过程。</li>
-<li>平常有学习哪些新技术。</li>
-<li>说说分布式。用到了哪些开源框架。</li>
-</ol>
-<h1 id="面试总结"><a href="#面试总结" class="headerlink" title="面试总结:"></a>面试总结:</h1><h2 id="Hibernate面试题总结"><a href="#Hibernate面试题总结" class="headerlink" title="Hibernate面试题总结"></a>Hibernate面试题总结</h2><ul>
-<li>Hibernate的三大准备:<ol>
-<li>准备Hibernate的jar包</li>
-<li>准备映射文件</li>
-<li>准备核心配置hibernate.cfg.xml文件</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li><p>Hibernate的七个步骤:</p>
-<ol>
-<li>加载并解析核心配置文件</li>
-<li>创建session工厂</li>
-<li>开启session</li>
-<li>开启事务</li>
-<li>持久化</li>
-<li>提交事务</li>
-<li>关闭session</li>
-</ol>
-</li>
-<li><p>Hibernate的延迟加载</p>
-<p>映射文件中配置<hibernate-mapping default-lazy="false">,或者设置当前pojo类支持延迟加载:lazy=”true”</hibernate-mapping></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;hibernate-mapping package=*&quot;com.softeem.hibernate.pojos&quot;*&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;class name=*&quot;Student&quot;* table=*&quot;tb_student&quot;* **lazy=&quot;true&quot;**&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;id name=*&quot;stuId&quot;* column=*&quot;stu_id&quot;*&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;generator class=*&quot;native&quot;* /&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;/id&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;property name=*&quot;stuName&quot;* column=*&quot;stu_name&quot;* /&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;property name=*&quot;stuSex&quot;* column=*&quot;stu_sex&quot;* /&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;many-to-one name=*&quot;clas&quot;* /&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;/class&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;/hibernate-mapping&gt;</span><br></pre></td></tr></table></figure>
-<p>get不支持延迟加载，load支持延迟加载，使用load查询对象时，实际没有执行查询操作，只有当查询出的对象被使用时才向数据库执行查询操作</p>
-</li>
-<li><p>Hibernate的缓存</p>
-<p>Hibernate分为一级缓存和二级缓存</p>
-<ol>
-<li><p>一级缓存:session级别的缓存，在进行查询的时候，系统会将查询到的结果放到session中，如果发生下一次重复查询,hibernate不会重复向数据库中发送查询语句，会直接从session缓存中取出对应的记录，除非session被关闭或被清空。</p>
-</li>
-<li><p>二级缓存:sessionFactory级别的缓存，在一级缓存的基础上，即使session被关闭或清空，缓存在sessionFactory的数据不会受到影响，导入二级缓存要经过一下配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">* 1  需要导入 二级缓存需要的jar包    ehcache-1.2.3.jar   commons-logging.jar</span><br><span class="line">* 2 核心的配置文件中   开启二级缓存的支持</span><br><span class="line">* 3 在核心的配置文件中 配置缓存的提供商</span><br><span class="line">* 4 导入二级缓存需要的配置文件</span><br><span class="line">* 5 配置对哪一个实体   进行缓存</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>Hibernate的三种状态以及对应的转换</p>
-<ol>
-<li>临时/瞬时态:new出来的对象,不存在于session或数据库中</li>
-<li>持久态:经过持久化操作的对象，数据库中有对应的数据，受session管理，当对持久化对象进行操作时，会对对应数据库中的数据进行修改</li>
-<li>游离态:session关闭后，持久态的对象转换为游离态。</li>
-</ol>
-</li>
-<li><p>乐观锁和悲观锁</p>
-<ol>
-<li>乐观锁，每次拿数据时认为别人不会修改，因此不会上锁，但是在更新的时候回判断一下在此期间别人有没有去更新这个数据。大多是加入数据版本机制实现。读取数据时将版本号一同读出，更新数据时将版本号加一。提交数据时版本号小于等于当前版本号，即认为该更新是过期的，否则给于更新</li>
-<li>悲观锁：依赖数据库机制。当用户在操作数据时，整个过程中这些数据锁定，其他任何用户都不能读取或修改，即独占的方式。</li>
-</ol>
-</li>
-<li><p>主键增长策略</p>
-<p>Hibernate标识符生成器</p>
-<ul>
-<li>increment：自增长，适用于所有数据库，但只适用于单线程情况，多线程环境有可能生成相同主键</li>
-<li>indentity:自增长，不适用oracle</li>
-<li>sequence:通常用在oracle中，自增长</li>
-<li>hilo:按照high/low算法生成标识符，数据库中的特定表的字段中获取high值，因此需要额外的数据库表保存主键生成的历史状态。</li>
-<li>native:根据底层数据库类型自动选择合适的标识符生成器，根据Hibernate适配器中的定义自动采用idetity,hilo,sequence的其中一种主键生成方式</li>
-<li>assigned:由应用层逻辑负责生成主键表示符</li>
-<li>uuid:128位唯一值产生算法，根据当前设备ip，时间，jvm启动时间以及内部自增量生成16进制数值主键</li>
-<li>foreign:one-to-one关系中，由另一张表主键决定自己的主键</li>
-</ul>
-</li>
-<li><p>左连接，右连接，内连接和全连接</p>
-<ul>
-<li>内连接:A表 inner join B表 on 条件。返回的是两个表的交集部分</li>
-<li>左连接:A表 left join B表 on 条件。以左表为主，左表记录全部显示，右表只会显示左表对应的记录，记录不足补null</li>
-<li>右连接:A表right join B表 on 条件。以右表为主，右表记录完全显示，左表记录只显示右表对应的记录，记录不足补null</li>
-<li>全连接:mySql不支持全连接.全连接会显示两张表的并集，A表 full join B表 on 条件。 左表不足不空，右表不足也补空</li>
-</ul>
-</li>
-<li><p>inverse属性</p>
-<ol>
-<li>inverse属性默认为false</li>
-<li>当表对表是多对多关联时，即会产生中间表，比如Student 表，Teacher表和StudentTeacher表，当Student表这边设置inverse属性为true时，则由Teacher进行对中间表的管理，如果两边inverse都为true时，表示任何操作都不触发对中间表的影响</li>
-</ol>
-</li>
-</ul>
-<h2 id="心理"><a href="#心理" class="headerlink" title="心理"></a>心理</h2><ol>
-<li>理清自己想说的知识点，平复心态。不要紧张结巴</li>
-<li>不过过多贬低自己的项目，要尽量拿出自己项目中的长处进行讲解。多多总结项目中的长处，必要时刻可以将所学知识融入到自己项目中去</li>
-</ol>
-<h2 id="技能"><a href="#技能" class="headerlink" title="技能:"></a>技能:</h2><ol>
-<li><p>Spring 源码的核心点中有Bean的解析过程和IOC的加载过程，不仅仅要懂过程，更要知道为什么要去这么做，这么做的好处是什么，得总结</p>
-</li>
-<li><p>jdk源码看过什么，举例(我举的是hashMap 和 CurrentHashMap.好处是什么，别人这样做的好处是什么，我认为是为了效率。)</p>
-</li>
-<li><p>项目中用过什么多线程方面的知识</p>
-</li>
-<li><p>请简单介绍xss，和xss的防范措施</p>
-</li>
-<li><p>给你1千万数据，10个线程同时进行处理，你会怎么设计</p>
-<p>这里我用的是线程池，信号量和volatile去实现，能不能想到更优的解决方案</p>
-</li>
-<li><p>悲观锁，乐观锁实现方式，以及行锁，表锁的概念</p>
-<p>悲观: select for update</p>
-<p>乐观:加版本字段，每次操作后+1；</p>
-</li>
-<li><p>Struts2的拦截器，，你们项目中怎么实现的</p>
-<p>配置信息</p>
-</li>
-<li><p>你们项目中是否用过索引，怎么创建索引和使用索引</p>
-<p>create index 索引名 on，等</p>
-</li>
-<li><p>sql的优化</p>
-<p>答的是少做order by，group by等操作</p>
-</li>
-<li><p>数据库事务的4个级别，以及对应的脏读，不可重复读，幻读的理解:</p>
-<p>read-uncommit,read-commit,repeat-red,serizable.</p>
-</li>
-<li><p>restful了解以及使用</p>
-</li>
-<li><p>分布式，微服务的理解</p>
-</li>
-<li><p>Hibernate 和SpringJDBC，为什么要用Springjdbc而不用Hibernate</p>
-</li>
-<li><p>那些集合是线程安全的</p>
-</li>
-<li><p>线程安全需要保证的条件，，项目中为什么要做一下线程安全的控制</p>
-</li>
-<li><p>平时爱看什么网站。想学些什么</p>
-</li>
-<li><p>为什么要离职。</p>
-</li>
-</ol>
-
-          
+          面试经历:2018-05
+数据库。sql 语句查询。要经常的练习。
+jdbc  mybaits hiernate 事务的实例代码。
+spring bean 的加载过程。
+sso 单点登录的原理。client 和server 详细描述
+spring security  的权限管理。
+spring 的b
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/11/面试经历/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -802,6 +648,8 @@
   
 
 
+  
+
 
 
 
@@ -840,6 +688,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
