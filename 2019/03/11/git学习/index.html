@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="git,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="git学习1. git指令:###Git基础指令 (1) git pull：git pull origin master,将origin版本库中的代码更新到本地的master分支 (2) git add: 将当前更改或者新增的文件加入到git索引中，加入到索引中代表记入了git版本历史中，这个是进行提交之前所要做的必要工作，git add com/ibk/txn/service/pubServic">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git操作">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/git学习/index.html">
+<meta property="og:site_name" content="李晨的兴趣博客">
+<meta property="og:description" content="git学习1. git指令:###Git基础指令 (1) git pull：git pull origin master,将origin版本库中的代码更新到本地的master分支 (2) git add: 将当前更改或者新增的文件加入到git索引中，加入到索引中代表记入了git版本历史中，这个是进行提交之前所要做的必要工作，git add com/ibk/txn/service/pubServic">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4E8D.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4E8E.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4E8F.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4E90.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4E91.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4E92.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4E93.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4E94.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4E95.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4E96.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4EA6.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4EA7.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4EA8.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4EA9.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4EAA.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4EAB.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4EAC.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4EAD.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4EAE.tmp.jpg">
+<meta property="og:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4EAF.tmp.jpg">
+<meta property="og:updated_time" content="2019-03-12T04:48:56.958Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git操作">
+<meta name="twitter:description" content="git学习1. git指令:###Git基础指令 (1) git pull：git pull origin master,将origin版本库中的代码更新到本地的master分支 (2) git add: 将当前更改或者新增的文件加入到git索引中，加入到索引中代表记入了git版本历史中，这个是进行提交之前所要做的必要工作，git add com/ibk/txn/service/pubServic">
+<meta name="twitter:image" content="file:///C:/Users/ADMINI~1/AppData/Local/Temp/ksohtml/wps4E8D.tmp.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/11/git学习/">
+
+
+
+
+
+  <title>git操作 | 李晨的兴趣博客</title>
+  
+
+
+
+
+
+
+
+
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李晨的兴趣博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">代码让我快乐</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/git学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Li Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://raw.githubusercontent.com/a1186873082/Daliy-Study-LC/Daliy-Study/img/my.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李晨的兴趣博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">git操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T20:39:49+08:00">
+                2019-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="git学习"><a href="#git学习" class="headerlink" title="git学习"></a>git学习</h1><h3 id="1-git指令"><a href="#1-git指令" class="headerlink" title="1. git指令:"></a>1. <strong>git指令:</strong></h3><p>###Git基础指令</p>
+<p>(1) git pull：git pull origin master,将origin版本库中的代码更新到本地的master分支</p>
+<p>(2) git add: 将当前更改或者新增的文件加入到git索引中，加入到索引中代表记入了git版本历史中，这个是进行提交之前所要做的必要工作，git add com/ibk/txn/service/pubService.java就是将com/ibk/txn/service/pubService.java文件加入到git索引中。</p>
+<p>(3) git rm:从当前的工作空间中和索引中删除文件,git rm com/ibk/txn/service/pubService.java,就会删除pubService文件</p>
+<p>(4) git commit:提交当前工作空间的修改内容，git commit -m story #3,commit this service,提-m相当于提交信息</p>
+<p>(5) git push:将本地commit后的代码更新到远程版本库中，git push origin就是将本地代码更新到名为origin的远程库中。</p>
+<p>(6) git log:查看历史日志</p>
+<p>(7) git revert:还原一个版本的修改，必须提供具体的版本号:git revert 版本号，(版本号一般都是生成的一个哈希值)</p>
+<p>###进阶git指令</p>
+<p>(1) git branch：可以进行创建，删除，查询分支, git branch lc_Branch会从当前工作版本中创建一个 lc_Branch的分支，git branch -D lc_Branch就会删除lc_Branch分支，git branch就会列出本地所有git分支</p>
+<p>(2) git checkout：Git的checkout有两个作用，其一是在不同的branch之间进行切换，例如’git checkout new_branch’就会切换到new_branch的分支上去；另一个功能是还原代码的作用，例如’git checkout app/model/user.rb’就会将user.rb文件从上一个已提交的版本中更新回来，未提交的内容全部会回滚</p>
+<p>(3) git rebase:用于把一个分支的修改合并到当前分支。使用git rebase后，可以让不同前进的分支历史看起来像没有经过合并(merge commit)一样，</p>
+<p>(4) git reset:将git版本回滚到指定的版本号:比如，有3次提交的版本A-C,其中B版本的版本的版本号(哈希值)。如果使用该指令git reset B版本号，此时git中就只会剩下A-B的版本</p>
+<p>(5) git stash：将未提交的代码存入git工作栈中。需要时再应用回来</p>
+<p>(6) git config:可以新增，更改git的设置,如git config branch.master.remote origin就是将master的远程版本库设置为别名为origin的版本库</p>
+<p>(7) git tag:为某一个版本打上标签，如:git tag study_version 版本哈希值，下次就可以根据study_version标签进行查看该版本，而不用使用哈希值了</p>
+<h3 id="2-将代码给git托管"><a href="#2-将代码给git托管" class="headerlink" title="(2)将代码给git托管:"></a>(2)将代码给git托管:</h3><p>(1) 首先，我们得创建一个git本地仓库,进入到项目根目录下，利用git init指令创建一个版本库，你会发现该目录下会生成一个.git的目录，代表创建本地版本库成功，也可以利用git clone利用本地仓库新建一个本地仓库:</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4E8D.tmp.jpg" alt="img"> </p>
+<p>打开eclipse,进入到该目录下，建立java project项目，</p>
+<p>(1) 利用git add指令和git commit指令将项目上传到本地库，</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4E8E.tmp.jpg" alt="img"> </p>
+<p>也可以通过右键&gt;Team&gt;add to Index,右键&gt;Team&gt;commit的方式进行上传到本地库。</p>
+<p>(2) 上传文件:</p>
+<p>首先，通过git add [path]指令将要上传的文件add到git索引中，再通过git commit提交文件</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4E8F.tmp.jpg" alt="img"> </p>
+<p>也可以通过Team&gt;add to Index后，填写message信息后通过Team&gt;commit将文件提交到git本地库中。</p>
+<h3 id="3-创建冲突文件"><a href="#3-创建冲突文件" class="headerlink" title="3. 创建冲突文件:"></a>3. <strong>创建冲突文件:</strong></h3><p>(1) 首先你得创建一个远程仓库:在本地E盘中我新建了一个git文件夹，利用命令git init初始化git仓库，进入到之前创建的本地仓库git-study,然后通过命令git remote add origin E:\git\将本地仓库与远程仓库关联。</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4E90.tmp.jpg" alt="img"> </p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4E91.tmp.jpg" alt="img">此时，因为创建的不是裸仓库，所以我们得进行相应的配置。git config –global receive.denyCurrentBranch ignore</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4E92.tmp.jpg" alt="img"> </p>
+<p>也可以直接修改配置文件：.git/config</p>
+<p>在文件中添加以下内容即可</p>
+<p>[receive]</p>
+<p>denyCurrentBranch = ignore</p>
+<p>配置完成后就能将代码push到远程库中了。</p>
+<p>(2) 为了在一台电脑上产生冲突，需要新建了一个工作空间，将远程仓库中的代码clone下来。点击clone a git respository,</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4E93.tmp.jpg" alt="img"> </p>
+<p>点击local file,选择远程仓库所在目录。</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4E94.tmp.jpg" alt="img"> </p>
+<p>选择branch分支</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4E95.tmp.jpg" alt="img"> </p>
+<p>选择一个空文件夹进行创建，</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4E96.tmp.jpg" alt="img"> </p>
+<p>(3) 创建好条件之后，假设之前本地库为user1,以上clone下来的本地库为user2.</p>
+<p>起初git-testOne项目中的HelloWorld文件如下图:</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4EA6.tmp.jpg" alt="img"> </p>
+<p>(4) 将user1中的git-testOne项目中的HelloWorld文件修改成如下模样。经过add to index-&gt;commit-&gt;pull-&gt;push上传之后</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4EA7.tmp.jpg" alt="img"> </p>
+<p>在user2中的git-testOne项目中的HelloWorld文件修改成如下模样。经过add to index-&gt;commit-&gt;pull。</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4EA8.tmp.jpg" alt="img"> </p>
+<p>就会产生冲突文件。如下图</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4EA9.tmp.jpg" alt="img"> </p>
+<h3 id="4-解决冲突文件"><a href="#4-解决冲突文件" class="headerlink" title="4. 解决冲突文件:"></a>4. <strong>解决冲突文件:</strong></h3><p>经过第三步的操作，此时在user2中产生了冲突文件，对于冲突文件我了解2种解决方式:</p>
+<p>(1) 。根据git产生的标识符解决冲突。</p>
+<p>其中&lt;&lt;&lt;&lt;&lt;HEAD到======的是user2中之前的原代码。</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4EAA.tmp.jpg" alt="img"> </p>
+<p>而======到&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch ‘master’ of <a href="file://E:\git表示产生冲突的另一个用户的代码" target="_blank" rel="noopener">file:///E:\git表示的是产生冲突的另一个用户的代码</a></p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4EAB.tmp.jpg" alt="img"> </p>
+<p>(2) 找到冲突文件，点击右键-&gt;Compare With-&gt;Branch, Tags or Reference</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4EAC.tmp.jpg" alt="img"> </p>
+<p>选择Remote Tracking 下的origin/master分支,点击compare.进行比对服务器上的版本</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4EAD.tmp.jpg" alt="img"> </p>
+<p>通过自己的需求进行解决冲突，我发现我又病了，所以我需要服务器上的版本，于是解决完冲突后的样子:</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4EAE.tmp.jpg" alt="img"> </p>
+<p>解决完冲突后，将自己手动提交冲突文件，选择冲突文件右键-&gt;Team-&gt;add to Index,变成如下图所示:</p>
+<p><img src="file:///C:\Users\ADMINI~1\AppData\Local\Temp\ksohtml\wps4EAF.tmp.jpg" alt="img"> </p>
+<p>此时，我选择保留git生成的message，点击commit上传文件。然后pull-&gt;push，冲突解决完毕</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/11/图解https/" rel="next" title="图解https">
+                <i class="fa fa-chevron-left"></i> 图解https
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/11/IntelliJ IDEAcha 常用快捷键列表/" rel="prev" title="IntelliJ IDEA">
+                IntelliJ IDEA <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://raw.githubusercontent.com/a1186873082/Daliy-Study-LC/Daliy-Study/img/my.png" alt="Li Chen">
+            
+              <p class="site-author-name" itemprop="name">Li Chen</p>
+              <p class="site-description motion-element" itemprop="description">hello every day</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#git学习"><span class="nav-number">1.</span> <span class="nav-text">git学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-git指令"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. git指令:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-将代码给git托管"><span class="nav-number">1.0.2.</span> <span class="nav-text">(2)将代码给git托管:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-创建冲突文件"><span class="nav-number">1.0.3.</span> <span class="nav-text">3. 创建冲突文件:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-解决冲突文件"><span class="nav-number">1.0.4.</span> <span class="nav-text">4. 解决冲突文件:</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Li Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

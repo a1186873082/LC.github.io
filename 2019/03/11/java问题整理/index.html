@@ -88,7 +88,7 @@
 <meta property="og:description" content="Java基础 List和set的区别: List可以存储重复字段，且有序存储 set不可以存储重复字段，只有LinkHashSet是有序存储的，其他都是无序  HashSet是如何保证不重复的 HashSet在底层是用HashMap结构存储数据的，将值hash后，如果hash值相同，则equals判断是否相等，如果相等，则说明元素存在，不存。如果hash值相同，equals判断不相等，则不存  H">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="e:/test/Daliy-Study-LC/img/BIO和NIO.png">
-<meta property="og:updated_time" content="2019-03-12T04:35:54.033Z">
+<meta property="og:updated_time" content="2019-03-12T04:47:32.777Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java问题整理">
 <meta name="twitter:description" content="Java基础 List和set的区别: List可以存储重复字段，且有序存储 set不可以存储重复字段，只有LinkHashSet是有序存储的，其他都是无序  HashSet是如何保证不重复的 HashSet在底层是用HashMap结构存储数据的，将值hash后，如果hash值相同，则equals判断是否相等，如果相等，则说明元素存在，不存。如果hash值相同，equals判断不相等，则不存  H">
@@ -751,8 +751,16 @@
 <p>10、各种回收器，各自优缺点，重点CMS、G1</p>
 <p>11、各种回收算法</p>
 <p>12、OOM错误，stackoverflow错误，permgen space错误</p>
-<h1 id="java-问题总结"><a href="#java-问题总结" class="headerlink" title="java 问题总结"></a>java 问题总结</h1><p>1、Array中可以用泛型吗?</p>
+<h1 id="java-问题总结"><a href="#java-问题总结" class="headerlink" title="java 问题总结"></a>java 问题总结</h1><p><strong>1、Array中可以用泛型吗?</strong></p>
 <p>　　这可能是Java泛型面试题中最简单的一个了，当然前提是你要知道Array事实上并不支持泛型，这也是为什么Joshua Bloch在Effective Java一书中建议使用List来代替Array，因为List可以提供编译期的类型安全保证，而Array却不能。</p>
+<p><strong>2、forward和redirect方法</strong></p>
+<ol>
+<li><strong>从地址栏显示来说</strong>:forward是服务器请求资源，服务器直接访问目标地址的URL,把那个URL的响应内容读取过来。然后把这些内容发送给浏览器，浏览器根本不知道服务器发送的内容从哪里来。redirect是服务端根据逻辑，发送一个状态码和location地址，告诉浏览器去重新请求那个地址，所以地址栏显示的是新的URL</li>
+<li><strong>从数据共享来说</strong>:forward转发页面和转发到的页面可以共享request里面的数据,而redirect不能共享数据</li>
+<li><strong>从运用地方来说</strong>:forward一般用于用户登录的时候，根据角色转发到响应模块，而redirect一般用于用户注销登录时返回主页面和跳转到其他的网站。</li>
+<li><strong>从效率上说</strong>:forward效率高，redirect效率低</li>
+<li>forward是内部重定向，redirect是外部重定向，redirect默认状态码为302。</li>
+</ol>
 
       
     </div>
@@ -870,12 +878,21 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
@@ -883,7 +900,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
