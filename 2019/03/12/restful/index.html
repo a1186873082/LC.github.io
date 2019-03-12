@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="http,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="restful 的概念REST（表述性状态转移（Representational State Transfer,REST）的主要原则:  网络上的事物都能被抽象成为资源 每个资源都有一个唯一的资源标识符URI; 使用标准方法操作资源; 所有的操作都是无状态的; 通过缓存提高性能  翻译成我认为的原则为:  使用HTTP动词：GET POST PUT DELETE； 无状态连接，服务器端不应保存过多">
+<meta name="keywords" content="http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="restful">
+<meta property="og:url" content="http://yoursite.com/2019/03/12/restful/index.html">
+<meta property="og:site_name" content="李晨的兴趣博客">
+<meta property="og:description" content="restful 的概念REST（表述性状态转移（Representational State Transfer,REST）的主要原则:  网络上的事物都能被抽象成为资源 每个资源都有一个唯一的资源标识符URI; 使用标准方法操作资源; 所有的操作都是无状态的; 通过缓存提高性能  翻译成我认为的原则为:  使用HTTP动词：GET POST PUT DELETE； 无状态连接，服务器端不应保存过多">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img.mukewang.com/58f60b240001fe2714640906.png">
+<meta property="og:updated_time" content="2019-03-12T04:19:22.110Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="restful">
+<meta name="twitter:description" content="restful 的概念REST（表述性状态转移（Representational State Transfer,REST）的主要原则:  网络上的事物都能被抽象成为资源 每个资源都有一个唯一的资源标识符URI; 使用标准方法操作资源; 所有的操作都是无状态的; 通过缓存提高性能  翻译成我认为的原则为:  使用HTTP动词：GET POST PUT DELETE； 无状态连接，服务器端不应保存过多">
+<meta name="twitter:image" content="https://img.mukewang.com/58f60b240001fe2714640906.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/12/restful/">
+
+
+
+
+
+  <title>restful | 李晨的兴趣博客</title>
+  
+
+
+
+
+
+
+
+
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李晨的兴趣博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">代码让我快乐</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/java" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/restful/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Li Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://raw.githubusercontent.com/a1186873082/Daliy-Study-LC/Daliy-Study/img/my.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李晨的兴趣博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">restful</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-12T00:00:00+08:00">
+                2019-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="restful-的概念"><a href="#restful-的概念" class="headerlink" title="restful 的概念"></a>restful 的概念</h1><p>REST（表述性状态转移（Representational State Transfer,REST）的主要原则:</p>
+<ol>
+<li>网络上的事物都能被抽象成为资源</li>
+<li>每个资源都有一个唯一的资源标识符URI;</li>
+<li>使用标准方法操作资源;</li>
+<li>所有的操作都是无状态的;</li>
+<li>通过缓存提高性能</li>
+</ol>
+<p>翻译成我认为的原则为:</p>
+<ol>
+<li>使用HTTP动词：GET POST PUT DELETE；</li>
+<li>无状态连接，服务器端不应保存过多上下文状态，即每个请求都是独立的；</li>
+<li>为每个资源设置URI；</li>
+<li>通过XML JSON进行数据传递；也可以是其他形式，取决于服务供应商和消费服务的用户</li>
+</ol>
+<p>实现上述原则的架构即可称为RESTFul架构。</p>
+<ol>
+<li>互联网环境下，任何应用的架构和API可以被快速理解；</li>
+<li>分布式环境下，任何请求都可以被发送到任意服务器；</li>
+<li>异构环境下，任何s资源的访问和使用方式都统一；</li>
+</ol>
+<p>SPA（单页应用技术）:</p>
+<p>现在有一个在前端领域很火的名词SPA(Single Page Application)也就是所谓的单页应用，在和用户交互的时候当用户点击某个物件或者按键的时候不会跳转到其他的页面，会像app一样在当前页面进行跳转，</p>
+<h2 id="如何理解REST"><a href="#如何理解REST" class="headerlink" title="如何理解REST"></a>如何理解REST</h2><p>要理解REST也就是<code>Representational State Transfer</code>，首先要理解一个概念：Resources,也就是资源，<br>在REST这个短语中，其实省略了主语：Resources,表现层其实指的是资源的表现层。<br>所谓的资源，就是网络上的一个实体，它可以是一段文本，一首歌曲，一张图片，一个服务，总之是一种真实的存在，可以用URL指向它，每种资源都有自己独一无二的URL，要获取这个资源，访问它的URL即可。<br>接下来说说<code>Representational</code>,因为上面说了，资源是一种实体，它可以有多种外在表现形式，我们把资源表现出来的形式，称之为“表现层“。<br>比如一段文本，可以以txt格式显示，也可以以html或者xml，json等多种格式显示。<br>它具体的表现形式，应该在报文头中用<code>Accept</code>和<code>Content-Type</code>指定，这两个字段是对“表现层“的描述。eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">accept: application/json</span><br><span class="line">accept-encoding: gzip, deflate</span><br><span class="line">accept-language: en-US,en;q=0.8</span><br><span class="line">content-type: application/json</span><br><span class="line">user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36</span><br></pre></td></tr></table></figure>
+<p>最后就是状态转化了，访问一个网站，就代表了客户端和服务器的一个互动过程。在这个过程中，势必涉及到数据和状态的变化。<br>互联网通信协议HTTP协议，是一个无状态协议。这意味着，所有的状态都保存在服务器端。因此，如果客户端想要操作服务器，必须通过某种手段，让服务器端发生”状态转化”（State Transfer）。而这种转化是建立在表现层之上的，所以就是”表现层状态转化”。<br>客户端用到的手段，只能是HTTP协议。<br>综上所述：所谓的RESTful架构需要满足以下三点:</p>
+<ul>
+<li>每个url代表一种资源</li>
+<li>客户端和服务器之间传递这种资源的某种表现形式</li>
+<li>客户端通过http动词，对服务器上的某种资源进行操作，以实现“表现层状态转化”</li>
+</ul>
+<p>如何设计RESTful API</p>
+<p>参考文章:</p>
+<ul>
+<li><a href="https://codeplanet.io/principles-good-restful-api-design/" target="_blank" rel="noopener">Principles of good RESTful API Design</a></li>
+<li><a href="https://bourgeois.me/rest/" target="_blank" rel="noopener">REST best practices</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank" rel="noopener">RESTful API 设计指南</a><br>主要是学习了阮一峰老师的这篇博客的小结。</li>
+</ul>
+<p>一、协议</p>
+<p>API与用户的通信协议，总是使用HTTPs协议。</p>
+<p>二、域名</p>
+<p>应该尽量将api部署在专门的域名下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.example.com</span><br></pre></td></tr></table></figure>
+<p>如果api很简单，不需要考虑其扩展性，也可以放在主域名下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://example.com/api/</span><br></pre></td></tr></table></figure>
+<p>三、版本</p>
+<p>处理版本号的方式有两种：</p>
+<ul>
+<li><p>将版本号放在放入url:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.example/com/v1/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将版本号放在HTTP报文头中，但是不如放在url中只管和方便。<a href="https://developer.github.com/v3/media/#request-specific-version" target="_blank" rel="noopener">Github</a>是采用这种方式的。<br>如下图所示：<br><img src="https://img.mukewang.com/58f60b240001fe2714640906.png" alt="图片描述"><br>使用<code>curl https://api.github.com/users/whatever -i</code>命令查看某一个github提供的api，可以从图上看到有这样一行：<code>X-GitHub-Media-Type: github.v3; format=json</code>，（以X-开头的都是自定义头，并不包含于HTTP标准），用以描述当前api的版本信息。</p>
+</li>
+</ul>
+<p>四、路径</p>
+<p>路径又称为<code>终点(endpoint)</code>,(配置过webservice和wcf表示这个词好熟悉-。-)，表示API的具体网址。<br>在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应。一般来说，数据库中的表都是同种记录的”集合”（collection），所以API中的名词也应该使用复数。<br>举例来说，有一个API提供动物园（zoo）的信息，还包括各种动物和雇员的信息，则它的路径应该设计成下面这样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https://api.example.com/v1/zoos</span><br><span class="line">https://api.example.com/v1/animals</span><br><span class="line">https://api.example.com/v1/employees</span><br></pre></td></tr></table></figure>
+<p>五、HTTP动词</p>
+<p>对于资源的具体操作类型，由HTTP动词表示。<br>常见的命令如下：（（括号里是对应的SQL命令）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GET（SELECT）：从服务器取出资源（一项或多项）</span><br><span class="line">POST（CREATE）：在服务器新建一个资源。</span><br><span class="line">PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）</span><br><span class="line">PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）</span><br><span class="line">DELETE（DELETE）：从服务器删除资源</span><br></pre></td></tr></table></figure>
+<p>还有两个不常用的HTTP动词：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HEAD：获取资源的元数据</span><br><span class="line">OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的</span><br></pre></td></tr></table></figure>
+<p>以下是一些示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /zoos：列出所有动物园</span><br><span class="line">POST /zoos：新建一个动物园</span><br><span class="line">GET /zoos/ID：获取某个指定动物园的信息</span><br><span class="line">PUT /zoos/ID：更新某个指定动物园的信息（提供该动物园的全部信息）</span><br><span class="line">PATCH /zoos/ID：更新某个指定动物园的信息（提供该动物园的部分信息）</span><br><span class="line">DELETE /zoos/ID：删除某个动物园</span><br><span class="line">GET /zoos/ID/animals：列出某个指定动物园的所有动物</span><br><span class="line">DELETE /zoos/ID/animals/ID：删除某个指定动物园的指定动物</span><br></pre></td></tr></table></figure>
+<p>六、过滤信息</p>
+<p>如果记录数量很多，服务器不可能都将它们返回给用户。API应该提供参数，过滤返回结果。<br>以下是一些常见的过滤参数示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">?limit=10：指定返回记录的数量</span><br><span class="line">?offset=10：指定返回记录的开始位置。</span><br><span class="line">?page=2&amp;per_page=100：指定第几页，以及每页的记录数。</span><br><span class="line">?sortby=name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序。</span><br><span class="line">?animal_type_id=1：指定筛选条件</span><br></pre></td></tr></table></figure>
+<p>参数的设计允许存在冗余，即允许API路径和URL参数偶尔有重复。比如，GET /zoo/ID/animals 与 GET /animals?zoo_id=ID 的含义是相同的。</p>
+<p>七、状态码</p>
+<p>服务器向用户返回的状态码和提示信息，常见的有以下一些（方括号中是该状态码对应的HTTP动词）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">200 OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。</span><br><span class="line">201 CREATED - [POST/PUT/PATCH]：用户新建或修改数据成功。</span><br><span class="line">202 Accepted - [*]：表示一个请求已经进入后台排队（异步任务）</span><br><span class="line">204 NO CONTENT - [DELETE]：用户删除数据成功。</span><br><span class="line">400 INVALID REQUEST - [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的。</span><br><span class="line">401 Unauthorized - [*]：表示用户没有权限（令牌、用户名、密码错误）。</span><br><span class="line">403 Forbidden - [*] 表示用户得到授权（与401错误相对），但是访问是被禁止的。</span><br><span class="line">404 NOT FOUND - [*]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。</span><br><span class="line">406 Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。</span><br><span class="line">410 Gone -[GET]：用户请求的资源被永久删除，且不会再得到的。</span><br><span class="line">422 Unprocesable entity - [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误。</span><br><span class="line">500 INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。</span><br></pre></td></tr></table></figure>
+<p>完整的状态码戳<a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank" rel="noopener">这里</a><br>中文的见这里：(摘自网络，仅供参考)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">Informational 1xx</span><br><span class="line">表示临时响应并需要请求者继续执行操作的状态代码。</span><br><span class="line">100 Continue</span><br><span class="line">（继续）说明部分请求已成功收到，其余的现在应该发出。</span><br><span class="line">101 Switching Protocols</span><br><span class="line">（切换协议） 请求者已要求服务器切换协议，服务器已确认并准备切换。</span><br><span class="line"></span><br><span class="line">Successful 2xx</span><br><span class="line">表示成功处理了请求的状态代码</span><br><span class="line">200 OK</span><br><span class="line">表示成功处理了请求的状态代码。</span><br><span class="line">201 Created</span><br><span class="line">（已创建） 请求成功并且服务器创建了新的资源。</span><br><span class="line">202 Accepted</span><br><span class="line">（已接受） 服务器已接受请求，但尚未处理。</span><br><span class="line">203 Non-Authoritative Information</span><br><span class="line">（非授权信息） 服务器已成功处理了请求，但返回的信息可能来自另一来源。</span><br><span class="line">204 No Content</span><br><span class="line">（无内容） 服务器成功处理了请求，但没有返回任何内容。</span><br><span class="line">205 Reset Content</span><br><span class="line">（重置内容） 服务器成功处理了请求，但没有返回任何内容。 与 204 响应不同，此响应要求请求者重置文档视图（例如，清除表单内容以输入新内容）。</span><br><span class="line">206 Partial Content</span><br><span class="line">服务器成功处理了部分 GET 请求。</span><br><span class="line"></span><br><span class="line">Redirection 3xx</span><br><span class="line">要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。 Google 建议您在每次请求中使用重定向不要超过 5 次。 您可以使用网站管理员工 具查看一下 Googlebot 在抓取重定向网页时是否遇到问题。 诊断下的网络抓取页中列出了由于重定向错误而导致 Googlebot 无法抓取的 网址。</span><br><span class="line">300 Multiple Choices</span><br><span class="line">（多种选择） 针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。</span><br><span class="line">301 Moved Permanently</span><br><span class="line">（永久移动） 请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。</span><br><span class="line">302 Found</span><br><span class="line">（临时移动） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。 此代码与响应 GET 或 HEAD 请求的 301 代码类似，会自动将请求者转到不同的位置。</span><br><span class="line">303 See Other</span><br><span class="line">（查看其他位置） 请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。 对于除 HEAD 之外的所有请求，服务器会自动转到其他位置。</span><br><span class="line">304 Not Modified</span><br><span class="line">（未修改） 自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容。 如果网页自请求者上次请求后再也没有更改过，您应当将服务器配置为返回此响应（称为 If-Modified-Since HTTP 标头）。</span><br><span class="line">305 Use Proxy</span><br><span class="line">（使用代理） 请求者只能使用代理访问请求的网页。 如果服务器返回此响应，还表示请求者应使用代理。</span><br><span class="line">306 (Unused)</span><br><span class="line">307 Temporary Redirect</span><br><span class="line">（临时重定向） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。 此代码与响应 GET 和 HEAD 请求的 301 代码类似，会自动将请求者转到不同的位置。</span><br><span class="line"></span><br><span class="line">Client Error 4xx</span><br><span class="line">这些状态代码表示请求可能出错，妨碍了服务器的处理。</span><br><span class="line">400 Bad Request</span><br><span class="line">（错误请求） 服务器不理解请求的语法。</span><br><span class="line">401 Unauthorized</span><br><span class="line">（未授权） 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。</span><br><span class="line">402 Payment Required</span><br><span class="line">未被使用的代码，被标识为“保留，以备经来使用”</span><br><span class="line">403 Forbidden</span><br><span class="line">（禁止） 服务器拒绝请求。</span><br><span class="line">404 Not Found</span><br><span class="line">（未找到） 服务器找不到请求的网页。</span><br><span class="line">405 Method Not Allowed</span><br><span class="line">（方法禁用） 禁用请求中指定的方法。</span><br><span class="line">406 Not Acceptable</span><br><span class="line">（不接受） 无法使用请求的内容特性响应请求的网页</span><br><span class="line">407 Proxy Authentication Required</span><br><span class="line">（需要代理授权） 此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。 如果服务器返回此响应，还会指明请求者应当使用的代理。</span><br><span class="line">408 Request Timeout</span><br><span class="line">（请求超时） 服务器等候请求时发生超时。</span><br><span class="line">409 Conflict</span><br><span class="line">（冲突） 服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。 服务器在响应与前一个请求相冲突的 PUT 请求时可能会返回此代码，同时会附上两个请求的差异列表。</span><br><span class="line">410 Gone</span><br><span class="line">（已删除） 如果请求的资源已永久删除，服务器就会返回此响应。 该代码与 404（未找到）代码相似，但在资源以前存在而现在不存在的情况下，有时会用来替代 404 代码。 如果资源已永久删除，您应当使用 301 指定资源的新位置。</span><br><span class="line">411 Length Required</span><br><span class="line">（需要有效长度） 服务器不接受不含有效内容长度标头字段的请求。</span><br><span class="line">412 Precondition Failed</span><br><span class="line">（未满足前提条件） 服务器未满足请求者在请求中设置的其中一个前提条件。</span><br><span class="line">413 Request Entity Too Large</span><br><span class="line">（请求实体过大） 服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。</span><br><span class="line">414 Request-URI Too Long</span><br><span class="line">（不支持的媒体类型） 请求的格式不受请求页面的支持。</span><br><span class="line">415 Unsupported Media Type</span><br><span class="line">（不支持的媒体类型） 请求的格式不受请求页面的支持。</span><br><span class="line">416 Requested Range Not Satisfiable</span><br><span class="line">（请求范围不符合要求） 如果页面无法提供请求的范围，则服务器会返回此状态代码。</span><br><span class="line">417 Expectation Failed</span><br><span class="line">（未满足期望值） 服务器未满足&quot;期望&quot;请求标头字段的要求。</span><br><span class="line"></span><br><span class="line">Server Error 5xx</span><br><span class="line">这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错</span><br><span class="line">500 Internal Server Error</span><br><span class="line">（服务器内部错误） 服务器遇到错误，无法完成请求。</span><br><span class="line">501 Not Implemented</span><br><span class="line">（尚未实施） 服务器不具备完成请求的功能。 例如，服务器无法识别请求方法时可能会返回此代码。</span><br><span class="line">502 Bad Gateway</span><br><span class="line">（错误网关） 服务器作为网关或代理，从上游服务器收到无效响应。</span><br><span class="line">503 Service Unavailable</span><br><span class="line">（服务不可用） 服务器目前无法使用（由于超载或停机维护）。 通常，这只是暂时状态。</span><br><span class="line">504 Gateway Timeout</span><br><span class="line">（网关超时） 服务器作为网关或代理，但是没有及时从上游服务器收到请求。</span><br><span class="line">505 HTTP Version Not Supported</span><br><span class="line">（HTTP 版本不受支持） 服务器不支持请求中所用的 HTTP 协议版本。</span><br></pre></td></tr></table></figure>
+<p>八、错误处理</p>
+<p>如果状态码是4xx或者5xx，就应该向用户返回出错信息。一般来说，返回的信息中将error作为键名，出错信息作为键值即可。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    error: &quot;Invalid API key&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>九、返回结果</p>
+<p>针对不同操作，服务器向用户返回的结果应该符合以下规范。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /collection：返回资源对象的列表（数组）</span><br><span class="line">GET /collection/resource：返回单个资源对象</span><br><span class="line">POST /collection：返回新生成的资源对象</span><br><span class="line">PUT /collection/resource：返回完整的资源对象</span><br><span class="line">PATCH /collection/resource：返回完整的资源对象</span><br><span class="line">DELETE /collection/resource：返回一个空文档</span><br></pre></td></tr></table></figure>
+<p>十、Hypermedia API（超媒体API）</p>
+<p>RESTful API最好做到Hypermedia，即返回结果中提供链接，连向其他API方法，使得用户不查文档，也知道下一步应该做什么。<br>Hypermedia API的设计被称为<a href="https://cn.wikipedia.org/wiki/HATEOAS" target="_blank" rel="noopener">HATEOAS</a>。<br>仍然以github为例，访问<code>https://api.github.com</code>，得到的内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;current_user_url&quot;: &quot;https://api.github.com/user&quot;,</span><br><span class="line">  &quot;current_user_authorizations_html_url&quot;: &quot;https://github.com/settings/connections/applications&#123;/client_id&#125;&quot;,</span><br><span class="line">  &quot;authorizations_url&quot;: &quot;https://api.github.com/authorizations&quot;,</span><br><span class="line">  &quot;code_search_url&quot;: &quot;https://api.github.com/search/code?q=&#123;query&#125;&#123;&amp;page,per_page,sort,order&#125;&quot;,</span><br><span class="line">  &quot;commit_search_url&quot;: &quot;https://api.github.com/search/commits?q=&#123;query&#125;&#123;&amp;page,per_page,sort,order&#125;&quot;,</span><br><span class="line">  &quot;emails_url&quot;: &quot;https://api.github.com/user/emails&quot;,</span><br><span class="line">  &quot;emojis_url&quot;: &quot;https://api.github.com/emojis&quot;,</span><br><span class="line">  &quot;events_url&quot;: &quot;https://api.github.com/events&quot;,</span><br><span class="line">  &quot;feeds_url&quot;: &quot;https://api.github.com/feeds&quot;,</span><br><span class="line">  &quot;followers_url&quot;: &quot;https://api.github.com/user/followers&quot;,</span><br><span class="line">  &quot;following_url&quot;: &quot;https://api.github.com/user/following&#123;/target&#125;&quot;,</span><br><span class="line">  &quot;gists_url&quot;: &quot;https://api.github.com/gists&#123;/gist_id&#125;&quot;,</span><br><span class="line">  &quot;hub_url&quot;: &quot;https://api.github.com/hub&quot;,</span><br><span class="line">  &quot;issue_search_url&quot;: &quot;https://api.github.com/search/issues?q=&#123;query&#125;&#123;&amp;page,per_page,sort,order&#125;&quot;,</span><br><span class="line">  &quot;issues_url&quot;: &quot;https://api.github.com/issues&quot;,</span><br><span class="line">  &quot;keys_url&quot;: &quot;https://api.github.com/user/keys&quot;,</span><br><span class="line">  &quot;notifications_url&quot;: &quot;https://api.github.com/notifications&quot;,</span><br><span class="line">  &quot;organization_repositories_url&quot;: &quot;https://api.github.com/orgs/&#123;org&#125;/repos&#123;?type,page,per_page,sort&#125;&quot;,</span><br><span class="line">  &quot;organization_url&quot;: &quot;https://api.github.com/orgs/&#123;org&#125;&quot;,</span><br><span class="line">  &quot;public_gists_url&quot;: &quot;https://api.github.com/gists/public&quot;,</span><br><span class="line">  &quot;rate_limit_url&quot;: &quot;https://api.github.com/rate_limit&quot;,</span><br><span class="line">  &quot;repository_url&quot;: &quot;https://api.github.com/repos/&#123;owner&#125;/&#123;repo&#125;&quot;,</span><br><span class="line">  &quot;repository_search_url&quot;: &quot;https://api.github.com/search/repositories?q=&#123;query&#125;&#123;&amp;page,per_page,sort,order&#125;&quot;,</span><br><span class="line">  &quot;current_user_repositories_url&quot;: &quot;https://api.github.com/user/repos&#123;?type,page,per_page,sort&#125;&quot;,</span><br><span class="line">  &quot;starred_url&quot;: &quot;https://api.github.com/user/starred&#123;/owner&#125;&#123;/repo&#125;&quot;,</span><br><span class="line">  &quot;starred_gists_url&quot;: &quot;https://api.github.com/gists/starred&quot;,</span><br><span class="line">  &quot;team_url&quot;: &quot;https://api.github.com/teams&quot;,</span><br><span class="line">  &quot;user_url&quot;: &quot;https://api.github.com/users/&#123;user&#125;&quot;,</span><br><span class="line">  &quot;user_organizations_url&quot;: &quot;https://api.github.com/user/orgs&quot;,</span><br><span class="line">  &quot;user_repositories_url&quot;: &quot;https://api.github.com/users/&#123;user&#125;/repos&#123;?type,page,per_page,sort&#125;&quot;,</span><br><span class="line">  &quot;user_search_url&quot;: &quot;https://api.github.com/search/users?q=&#123;query&#125;&#123;&amp;page,per_page,sort,order&#125;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面可以看到，如果想获取当前用户的信息，应该去访问<code>api.github.com/user</code>，然后就得到了下面结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;message&quot;: &quot;Not Found&quot;,</span><br><span class="line">  &quot;documentation_url&quot;: &quot;https://developer.github.com/v3&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面的结果可以看出文档的地址。接下来根据文档的描述，可以利用这个api找到我的信息(羞~(@^_^@)~),访问<code>api.github.com/user/nicky-lau</code>，得到以下信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;login&quot;: &quot;nicky-lau&quot;,</span><br><span class="line">  &quot;id&quot;: 12084271,</span><br><span class="line">  &quot;avatar_url&quot;: &quot;https://avatars2.githubusercontent.com/u/12084271?v=3&quot;,</span><br><span class="line">  &quot;gravatar_id&quot;: &quot;&quot;,</span><br><span class="line">  &quot;url&quot;: &quot;https://api.github.com/users/nicky-lau&quot;,</span><br><span class="line">  &quot;html_url&quot;: &quot;https://github.com/nicky-lau&quot;,</span><br><span class="line">  &quot;followers_url&quot;: &quot;https://api.github.com/users/nicky-lau/followers&quot;,</span><br><span class="line">  &quot;following_url&quot;: &quot;https://api.github.com/users/nicky-lau/following&#123;/other_user&#125;&quot;,</span><br><span class="line">  &quot;gists_url&quot;: &quot;https://api.github.com/users/nicky-lau/gists&#123;/gist_id&#125;&quot;,</span><br><span class="line">  &quot;starred_url&quot;: &quot;https://api.github.com/users/nicky-lau/starred&#123;/owner&#125;&#123;/repo&#125;&quot;,</span><br><span class="line">  &quot;subscriptions_url&quot;: &quot;https://api.github.com/users/nicky-lau/subscriptions&quot;,</span><br><span class="line">  &quot;organizations_url&quot;: &quot;https://api.github.com/users/nicky-lau/orgs&quot;,</span><br><span class="line">  &quot;repos_url&quot;: &quot;https://api.github.com/users/nicky-lau/repos&quot;,</span><br><span class="line">  &quot;events_url&quot;: &quot;https://api.github.com/users/nicky-lau/events&#123;/privacy&#125;&quot;,</span><br><span class="line">  &quot;received_events_url&quot;: &quot;https://api.github.com/users/nicky-lau/received_events&quot;,</span><br><span class="line">  &quot;type&quot;: &quot;User&quot;,</span><br><span class="line">  &quot;site_admin&quot;: false,</span><br><span class="line">  &quot;name&quot;: &quot;liu zhuang&quot;,</span><br><span class="line">  &quot;company&quot;: null,</span><br><span class="line">  &quot;blog&quot;: &quot;http://liu-zhuang.github.io&quot;,</span><br><span class="line">  &quot;location&quot;: &quot;Shang Hai,China&quot;,</span><br><span class="line">  &quot;email&quot;: &quot;70458055@qq.com&quot;,</span><br><span class="line">  &quot;hireable&quot;: null,</span><br><span class="line">  &quot;bio&quot;: null,</span><br><span class="line">  &quot;public_repos&quot;: 13,</span><br><span class="line">  &quot;public_gists&quot;: 0,</span><br><span class="line">  &quot;followers&quot;: 4,</span><br><span class="line">  &quot;following&quot;: 9,</span><br><span class="line">  &quot;created_at&quot;: &quot;2015-04-23T12:36:38Z&quot;,</span><br><span class="line">  &quot;updated_at&quot;: &quot;2016-07-21T22:56:52Z&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>十一、其他</p>
+<ul>
+<li>API的身份认证应该使用OAuth 2.0框架。</li>
+<li>服务器返回的数据格式，应该尽量使用JSON，避免使用XML。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/http/" rel="tag"># http</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/11/图解https/" rel="next" title="图解https">
+                <i class="fa fa-chevron-left"></i> 图解https
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/12/禅道操作手册/" rel="prev" title="禅道操作手册">
+                禅道操作手册 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://raw.githubusercontent.com/a1186873082/Daliy-Study-LC/Daliy-Study/img/my.png" alt="Li Chen">
+            
+              <p class="site-author-name" itemprop="name">Li Chen</p>
+              <p class="site-description motion-element" itemprop="description">hello every day</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#restful-的概念"><span class="nav-number">1.</span> <span class="nav-text">restful 的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何理解REST"><span class="nav-number">1.1.</span> <span class="nav-text">如何理解REST</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Li Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

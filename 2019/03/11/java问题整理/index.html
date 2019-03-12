@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Java基础 List和set的区别: List可以存储重复字段，且有序存储 set不可以存储重复字段，只有LinkHashSet是有序存储的，其他都是无序  HashSet是如何保证不重复的 HashSet在底层是用HashMap结构存储数据的，将值hash后，如果hash值相同，则equals判断是否相等，如果相等，则说明元素存在，不存。如果hash值相同，equals判断不相等，则不存  H">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java问题整理">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/java问题整理/index.html">
+<meta property="og:site_name" content="李晨的兴趣博客">
+<meta property="og:description" content="Java基础 List和set的区别: List可以存储重复字段，且有序存储 set不可以存储重复字段，只有LinkHashSet是有序存储的，其他都是无序  HashSet是如何保证不重复的 HashSet在底层是用HashMap结构存储数据的，将值hash后，如果hash值相同，则equals判断是否相等，如果相等，则说明元素存在，不存。如果hash值相同，equals判断不相等，则不存  H">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="e:/test/Daliy-Study-LC/img/BIO和NIO.png">
+<meta property="og:updated_time" content="2019-03-12T04:21:55.027Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java问题整理">
+<meta name="twitter:description" content="Java基础 List和set的区别: List可以存储重复字段，且有序存储 set不可以存储重复字段，只有LinkHashSet是有序存储的，其他都是无序  HashSet是如何保证不重复的 HashSet在底层是用HashMap结构存储数据的，将值hash后，如果hash值相同，则equals判断是否相等，如果相等，则说明元素存在，不存。如果hash值相同，equals判断不相等，则不存  H">
+<meta name="twitter:image" content="e:/test/Daliy-Study-LC/img/BIO和NIO.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/11/java问题整理/">
+
+
+
+
+
+  <title>java问题整理 | 李晨的兴趣博客</title>
+  
+
+
+
+
+
+
+
+
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李晨的兴趣博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">代码让我快乐</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/java" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/java问题整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Li Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://raw.githubusercontent.com/a1186873082/Daliy-Study-LC/Daliy-Study/img/my.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李晨的兴趣博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java问题整理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-11T16:27:17+08:00">
+                2019-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h1><ul>
+<li><p>List和set的区别:</p>
+<p>List可以存储重复字段，且有序存储</p>
+<p>set不可以存储重复字段，只有LinkHashSet是有序存储的，其他都是无序</p>
+</li>
+<li><p>HashSet是如何保证不重复的</p>
+<p>HashSet在底层是用HashMap结构存储数据的，将值hash后，如果hash值相同，则equals判断是否相等，如果相等，则说明元素存在，不存。如果hash值相同，equals判断不相等，则不存</p>
+</li>
+<li><p>HashMap是线程安全的吗？为什么不是线程安全的？</p>
+<p>HashMap不是线程安全的,因为在HashMap扩容时，有可能会造成死循环问题。</p>
+<p>HashMap扩容死循环参考:<a href="http://ifeve.com/hashmap-infinite-loop/" target="_blank" rel="noopener">http://ifeve.com/hashmap-infinite-loop/</a></p>
+</li>
+<li><p>HashMap的扩容过程</p>
+<p>当HashMap添加的数据超过HashMap总量的75%时，开始扩容，调用resize()将大小变为原来大小的两倍，利用tranfer()方法将原来的元素拷贝到新的数组里。</p>
+<p>参考blob：<a href="https://blog.csdn.net/aichuanwendang/article/details/53317351" target="_blank" rel="noopener">https://blog.csdn.net/aichuanwendang/article/details/53317351</a></p>
+</li>
+<li><p>HashMap1.7与1.8的区别。</p>
+<p>1.8发生hash冲突时，存储结构改为了红黑树存储，这个保证最大化使用内存，</p>
+</li>
+<li><p>final finally finalize的区别:</p>
+<p>final修饰属性时，改属性为常量，修饰方法时，方法不可被重写，修饰类时，类不可被继承</p>
+<p>finally:用于try catch代码块时，表示一定会执行的代码块，并且在return之前执行</p>
+<p>finalize:垃圾回收器被调用时会先调用该方法。该方法是Object中的方法，参考博客:<a href="https://blog.csdn.net/shanghui815/article/details/6787855" target="_blank" rel="noopener">https://blog.csdn.net/shanghui815/article/details/6787855</a></p>
+</li>
+<li><p>强引用，软引用，弱引用，虚引用:</p>
+<p>强引用:只要引用存在，垃圾回收期永远不会回收，A a = new A();</p>
+<p>软引用:非必须引用，内存溢出之前进行回收，可用于缓存</p>
+<p>​    例如:Object obj = new Object();<br>​    SoftReference<object> sf = new SoftReference<object>(obj);<br>​    obj = null;<br>​    sf.get();//有时候会返回null<br>​    这时候sf是对obj的一个软引用，通过sf.get()方法可以取到这个对象，当然，当这个对象被标记为需要回          </object></object></p>
+<p>​    收的对象时，则返回null</p>
+<p>弱引用:垃圾回收器扫描它所管辖的内存区域的过程中，一旦发现弱引用对象，不管当前内存与否都会回收</p>
+<p>虚引用:“虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收器回收。</p>
+</li>
+<li><p>java反射</p>
+<p>Java反射可以获得类中除了继承外的所有方法和属性。不管是否为private。</p>
+</li>
+<li><p>Array.sort实现原理和Collection实现原理</p>
+<ul>
+<li><p>Arrays.sort()<br>该算法是一个经过调优的快速排序，此算法在很多数据集上提供N*log(N)的性能，这导致其他快速排序会降低二次型性能。 </p>
+</li>
+<li><p>Collections.sort() </p>
+<p>该算法是一个经过修改的合并排序算法（其中，如果低子列表中的最高元素效益高子列表中的最低元素，则忽略合并）。此算法可提供保证的N*log(N)的性能，此实现将指定列表转储到一个数组中，然后再对数组进行排序，在重置数组中相应位置处每个元素的列表上进行迭代。这避免了由于试图原地对链接列表进行排序而产生的n2 log(n)性能。</p>
+</li>
+</ul>
+</li>
+<li><p>LinkedHashMap的应用</p>
+<ul>
+<li>LinkedHashMap是HashMap的一个子类，其保存了记录的插入顺序，用iterator遍历LinkedHashMap时，先得到的数据必定是先插入的</li>
+</ul>
+</li>
+<li><p>cloneable接口的实现原理</p>
+<ul>
+<li>cloneable为一个接口，实现Cloneable接口使得一个类型成为可克隆的，这是我们需要提供clone方法提交该类型对象的副本，返回一个object类的对象，程序员需要对其显示的转换。</li>
+</ul>
+</li>
+<li><p>异常的分类以及处理机制</p>
+<ul>
+<li>异常分为一般性异常和运行时异常，一般性异常(可查异常)必须要做异常处理，而运行时异常可以做异常处理也可以不做异常处理</li>
+<li>处理机制有throws,throw,try/catch<ol>
+<li>throws通常应用于方法上，声明一个方法可能抛出的所有异常信息</li>
+<li>throw通常在方法内部抛出一个具体的异常信息，通常需要用户自己捕获相关异常后抛出</li>
+<li>try/catch为捕获异常。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>wait和sleep的区别</p>
+<ul>
+<li>wait会释放当前锁，使当前线程处于睡眠状态，其他线程可以获得该锁进行任务，此时必须要用notify或者notifyAll进行唤醒改线程</li>
+<li>sleep不会释放当前锁，sleep会有时间限制，表示当前线程在所设时间内处理等待状态，时间一到恢复运行</li>
+</ul>
+</li>
+<li><p>数组在内存中如何分配</p>
+<ul>
+<li>由于数组为引用变量，所以其new出来的对象和对象的引用和大多数对象一样，引用存放在栈中，而对象实例存放在堆中</li>
+<li>Java中没有真正的多维数组，在内存中数组的本质就是一维数组，只不过一维数组的属性为另一个一维数组</li>
+</ul>
+</li>
+</ul>
+<h2 id="JAVA并发"><a href="#JAVA并发" class="headerlink" title="JAVA并发"></a>JAVA并发</h2><ul>
+<li><p>synchronized 的实现原理以及锁优化？</p>
+<p>原理：指令monitorenter和monitorexit来完成<br>Synchronized是通过对象内部的一个叫做监视器锁（monitor）来实现的。但是监视器锁本质又是依赖于底层的操作系统的Mutex Lock来实现的。synchronized 是重量级锁。</p>
+<p>锁的状态总共有四种：无锁状态、偏向锁、轻量级锁和重量级锁。随着锁的竞争，锁可以从偏向锁升级到轻量级锁，再升级的重量级锁（但是锁的升级是单向的，也就是说只能从低到高升级，不会出现锁的降级）。JDK 1.6中默认是开启偏向锁和轻量级锁来优化的，其他的优化还有适应性自旋，锁粗化，锁消除</p>
+<p>JDk中采用轻量级锁和偏向锁等对Synchronized的优化</p>
+<ul>
+<li>普通同步方法，锁是当前实例对象   </li>
+<li>静态同步方法，锁是当前类的class对象   </li>
+<li>同步方法块，锁是括号里面的对象</li>
+</ul>
+<p>对静态方法的同步本质上是对类的同步（静态方法本质上是属于类的方法，而不是对象上的方法），所以即使test和test2属于不同的对象，但是它们都属于SynchronizedTest类的实例，所以也只能顺序的执行method1和method2，不能并发执行。</p>
+</li>
+</ul>
+<ul>
+<li><p>volatile 的实现原理？<br>一个变量如果用volatile修饰了，则Java可以确保所有线程看到这个变量的值是一致的，       如果某个线程对volatile修饰的共享变量进行更新，那么其他线程可以立马看到这个更新，这就是所谓的线程可见性。<br>volatile可以保证线程可见性且提供了一定的有序性，但是无法保证原子性。在JVM底层volatile是采用“内存屏障”来实现的。</p>
+<p>volatile相对于synchronized稍微轻量些，在某些场合它可以替代synchronized，但是又不能完全取代synchronized，只有在某些场合才能够使用volatile。使用它必须满足如下两个条件：</p>
+<ul>
+<li>对变量的写操作不依赖当前值；</li>
+<li>该变量没有包含在具有其他变量的不变式中。</li>
+</ul>
+</li>
+<li><p>java 的信号灯 Semaphore?</p>
+<ul>
+<li><p>Semaphore往往结合线程池使用，比如建立一个固定大小为10的线程池，最多线程并发数为10个，当你提交20个任务到线程池的时候，线程池会安排这10个线程优先接待20个任务中的10个，当优先安排的10个中有完成的会去接待剩下的10个任务中的某一个任务，直到执行完所有任务为止。但是如果此时引入了Semaphore对象，所传的值是5的时候，那么这线程池中10个线程只有5个能够并发执行，此时就做到了限量访问的作用。</p>
+</li>
+<li><p>当Semaphore构造方法中传入的参数是1的时候，此时线程并发数最多是1个，即是线程安全的，这种方式也可以做到现场互斥。Java实现互斥线程同步有三种方式synchronized、lock、单Semaphore</p>
+</li>
+<li>Semaphore(int permits) //用给定的许可数和非公平的公平设置创建一个 Semaphore。  </li>
+<li>Semaphore(int permits, boolean fair) //用给定的许可数和给定的公平设置创建一个 Semaphore  第二个参数为false，后面线程获取许可的顺序是随机的。第二个参数为true，择获取许可的顺序是（先进先出；FIFO）公平的。</li>
+</ul>
+</li>
+<li><p>synchronized 在静态方法和普通方法的区别？</p>
+<ul>
+<li>普通方法加锁为对象锁，也就是说如果一个实例对象的非静态同步方法获取到锁后，该实例对象的其他非静态同步方法必须等待获取锁方法释放锁后才能获取到锁，但是不同实例对象的非静态同步方法因为跟该实例对象的非静态同步方法用的是不同的锁，所以毋需等待锁的释放，就可获取自己的锁</li>
+<li>静态方法加锁为类本身加锁，与普通方法的对象锁是不同的锁，所以静态的同步方法和非静态的同步方法之间不存在竞争条件，但是一个静态同步方法获得锁后，其他的静态同步方法需等待该方法释放锁之后才能获取锁。不同实例对象之间也是一样。</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li><p>怎么实现所有线程在等待某个事件的发生才会去执行？</p>
+<ul>
+<li><p>信号灯Semaphore<br>设置信号量的初始值为等待的线程数N，一开始将信号量申请完，让剩余的信号量为0，待事件发生时，同时释放N个占用的信号量，则等待信号量的所有线程将获取信号量得以继续执行</p>
+</li>
+<li><p>闭锁CountDownLatch<br>闭锁是典型的等待事件发生的同步工具类，将闭锁的初始值设置1，所有线程调用await方法等待，当事件发生时调用countDown将闭锁值减为0，则所有await等待闭锁的线程得以继续执行。</p>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="6">
+<li><p>CAS？CAS 有什么缺陷，如何解决？</p>
+<p>Compare And Swap”（CAS），是一种常见的降低读写锁冲突，保证数据一致性的方法，CAS必须有内存值V,旧值A和新值B，如果提供的旧值A与内存值V相等，则将新值B赋予给内存值V。</p>
+<p>CAS解决了什么问题<br>其实这个问题前面介绍悲观锁和乐观锁时其实已经回答，当多个线程操作时，它解决了悲观锁使用了独占锁，一次只能有一个线程进入临界区的问题，在竞争状态比较低的情况下提高了并发性能。为何说是竞争低的情况下，如果上面有很多个线程同时进入循环，那么每个线程都在占用资源执行，但每次只有一个线程能更新成功。<br>CAS缺点<br>当竞争很强烈时，每个线程都占用资源执行但是只有一个成功</p>
+<p>ABA问题，上面的例子中，如果还有一个线程3在修改，并将线程2修改后的值又变成了5，那么线程1此时是察觉不到的，它还能进行成功的执行！<br>ABA问题解决方式：引入一个版本号，在每次更新后都加1，在上面的例子中，即时线程3将*V修改回来原值，因为版本号不一致也会导致失败重试。<br>ABA问题，Java也提供了AtomicStampedReference来处理。</p>
+</li>
+<li><p>synchronized 和 lock 有什么区别？</p>
+<p>采用synchronized关键字来实现同步的话，就会导致一个问题：<br>　　如果多个线程都只是进行读操作，所以当一个线程在进行读操作时，其他线程只能等待无法进行读操作。</p>
+<ul>
+<li>Lock不是Java语言内置的，synchronized是Java语言的关键字，因此是内置特性。Lock是一个类，通过这个类可以实现同步访问；</li>
+<li>Lock和synchronized有一点非常大的不同，采用synchronized不需要用户去手动释放锁，当synchronized方法或者synchronized代码块执行完之后，系统会自动让线程释放对锁的占用；而Lock则必须要用户去手动释放锁，如果没有主动释放锁，就有可能导致出现死锁现象。</li>
+</ul>
+</li>
+<li><p>Hashtable 是怎么加锁的 ？</p>
+</li>
+</ol>
+<pre><code>hashtable都是通过synochronized 来加锁实现的。
+</code></pre><ol start="9">
+<li><p>HashMap 的并发问题？</p>
+<p>​</p>
+<ul>
+<li>多线程下put操作时，执行addEntry(hash, key, value, i)，如果有产生哈希碰撞，<br>导致两个线程得到同样的bucketIndex去存储，就可能会出现覆盖丢失的情况：</li>
+<li>HashMap在多线程put后可能导致get无限循环 </li>
+</ul>
+</li>
+<li><p>ConcurrenHashMap 介绍？1.8 中为什么要用红黑树？</p>
+<p>由于之前添加时已经保证这个树是有序的，因此查找时基本就是折半查找，效率很高。</p>
+</li>
+<li><p>AQS</p>
+<p>抽象试的队列同步器AbstractQueuedSynchronizer<br>CountDownLatch以例，任务分为N个子线程去执行，state也初始化为N（注意N要与线程个数一致）。这N个子线程是并行执行的，每个子线程执行完后countDown()一次，state会CAS减1。等到所有子线程都执行完后(即state=0)，会unpark()主调用线程，然后主调用线程就会从await()函数返回，继续后余动作。</p>
+<p>一般来说，自定义同步器要么是独占方法，要么是共享方式，他们也只需实现tryAcquire-tryRelease、tryAcquireShared-tryReleaseShared中的一种即可。但AQS也支持自定义同步器同时实现独占和共享两种方式，如ReentrantReadWriteLock。</p>
+</li>
+<li><p>如何检测死锁？怎么预防死锁？</p>
+<p>产生死锁必须同时满足以下四个条件，只要其中任一条件不成立，死锁就不会发生。</p>
+</li>
+</ol>
+<ul>
+<li><p>互斥条件：进程要求对所分配的资源（如打印机）进行排他性控制，即在一段时间内某 资源仅为一个进程所占有。此时若有其他进程请求该资源，则请求进程只能等待。</p>
+</li>
+<li><p>不剥夺条件：进程所获得的资源在未使用完毕之前，不能被其他进程强行夺走，即只能 由获得该资源的进程自己来释放（只能是主动释放)。</p>
+</li>
+<li><p>请求和保持条件：进程已经保持了至少一个资源，但又提出了新的资源请求，而该资源 已被其他进程占有，此时请求进程被阻塞，但对自己已获得的资源保持不放。</p>
+</li>
+<li><p>循环等待条件：存在一种进程资源的循环等待链，链中每一个进程已获得的资源同时被 链中下一个进程所请求。即存在一个处于等待状态的进程集合{Pl, P2, …, pn}，其中Pi等 待的资源被P(i+1)占有（i=0, 1, …, n-1)，Pn等待的资源被P0占有。</p>
+<p>如何避免死锁的产生：</p>
+</li>
+<li><p>加锁顺序（线程按照一定的顺序加锁）</p>
+</li>
+</ul>
+<ul>
+<li>加锁时限（线程尝试获取锁的时候加上一定的时限，超过时限则放弃对该锁的请求，并释放自己占有的锁）</li>
+</ul>
+<ul>
+<li>死锁检测</li>
+</ul>
+<ol start="13">
+<li><p>Java 内存模型？</p>
+<p>主内存和工作内存<br>线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作（读取、 赋值等）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同的线程之间也无法直接访问对方工作内存中的变量，线程间变量值的传递均需要通过主内存来完成。<br>Java内存模型是围绕着在并发过程中如何处理原子性、 可见性和有序性这3个特征来建立的</p>
+</li>
+<li><p>如何保证多线程下 i++ 结果正确？</p>
+<p>这个AtomicInteger 来实现i++的效果；或者使用加锁的放方式。</p>
+</li>
+<li><p>线程池的种类，区别和使用场景？</p>
+<p>newCachedThreadPool：<br>底层：返回ThreadPoolExecutor实例，corePoolSize为0；maximumPoolSize为Integer.MAX_VALUE；keepAliveTime为60L；unit为TimeUnit.SECONDS；workQueue为SynchronousQueue(同步队列)<br>通俗：当有新任务到来，则插入到SynchronousQueue中，由于SynchronousQueue是同步队列，因此会在池中寻找可用线程来执行，若有可以线程则执行，若没有可用线程则创建一个线程来执行该任务；若池中线程空闲时间超过指定大小，则该线程会被销毁。<br>适用：执行很多短期异步的小程序或者负载较轻的服务器</p>
+<p>newFixedThreadPool：<br>底层：返回ThreadPoolExecutor实例，接收参数为所设定线程数量nThread，corePoolSize为nThread，maximumPoolSize为nThread；keepAliveTime为0L(不限时)；unit为：TimeUnit.MILLISECONDS；WorkQueue为：new LinkedBlockingQueue<runnable>() 无解阻塞队列<br>通俗：创建可容纳固定数量线程的池子，每隔线程的存活时间是无限的，当池子满了就不在添加线程了；如果池中的所有线程均在繁忙状态，对于新任务会进入阻塞队列中(无界的阻塞队列)<br>适用：执行长期的任务，性能好很多</runnable></p>
+<p>newSingleThreadExecutor:<br>底层：FinalizableDelegatedExecutorService包装的ThreadPoolExecutor实例，corePoolSize为1；maximumPoolSize为1；keepAliveTime为0L；unit为：TimeUnit.MILLISECONDS；workQueue为：new LinkedBlockingQueue<runnable>() 无解阻塞队列<br>通俗：创建只有一个线程的线程池，且线程的存活时间是无限的；当该线程正繁忙时，对于新任务会进入阻塞队列中(无界的阻塞队列)<br>适用：一个任务一个任务执行的场景</runnable></p>
+<p>NewScheduledThreadPool:<br>底层：创建ScheduledThreadPoolExecutor实例，corePoolSize为传递来的参数，maximumPoolSize为Integer.MAX_VALUE；keepAliveTime为0；unit为：TimeUnit.NANOSECONDS；workQueue为：new DelayedWorkQueue() 一个按超时时间升序排序的队列<br>通俗：创建一个固定大小的线程池，线程池内线程存活时间无限制，线程池可以支持定时及周期性任务执行，如果所有线程均处于繁忙状态，对于新任务会进入DelayedWorkQueue队列中，这是一种按照超时时间排序的队列结构<br>适用：周期性执行任务的场景</p>
+</li>
+<li><p>分析线程池的实现原理和线程的调度过程？</p>
+<p>corePoolSize：线程池的核心线程数,线程池中运行的线程数也永远不会超过 corePoolSize 个,默认情况下可以一直存活。可以通过设置allowCoreThreadTimeOut为True,此时 核心线程数就是0,此时keepAliveTime控制所有线程的超时时间。<br>maximumPoolSize：线程池允许的最大线程数;<br>keepAliveTime： 指的是空闲线程结束的超时时间;<br>unit ：是一个枚举，表示 keepAliveTime 的单位;<br>workQueue：表示存放任务的BlockingQueue&lt;Runnable队列。<br>BlockingQueue:阻塞队列（BlockingQueue）是java.util.concurrent下的主要用来控制线程同步的工具。如果BlockQueue是空的,从BlockingQueue取东西的操作将会被阻断进入等待状态,直到BlockingQueue进了东西才会被唤醒。同样,如果BlockingQueue是满的,任何试图往里存东西的操作也会被阻断进入等待状态,直到BlockingQueue里有空间才会被唤醒继续操作。<br>阻塞队列常用于生产者和消费者的场景，生产者是往队列里添加元素的线程，消费者是从队列里拿元素的线程。阻塞队列就是生产者存放元素的容器，而消费者也只从容器里拿元素。具体的实现类有LinkedBlockingQueue,ArrayBlockingQueued等。一般其内部的都是通过Lock和Condition(显示锁（Lock）及Condition的学习与使用)来实现阻塞和唤醒。<br>线程池的工作过程如下：</p>
+<p>线程池刚创建时，里面没有一个线程。任务队列是作为参数传进来的。不过，就算队列里面有任务，线程池也不会马上执行它们。<br>当调用 execute() 方法添加一个任务时，线程池会做如下判断：<br>如果正在运行的线程数量小于 corePoolSize，那么马上创建线程运行这个任务；<br>如果正在运行的线程数量大于或等于 corePoolSize，那么将这个任务放入队列；<br>如果这时候队列满了，而且正在运行的线程数量小于 maximumPoolSize，那么还是要创建非核心线程立刻运行这个任务；<br>如果队列满了，而且正在运行的线程数量大于或等于 maximumPoolSize，那么线程池会抛出异常RejectExecutionException。<br>当一个线程完成任务时，它会从队列中取下一个任务来执行。<br>当一个线程无事可做，超过一定的时间（keepAliveTime）时，线程池会判断，如果当前运行的线程数大于 corePoolSize，那么这个线程就被停掉。所以线程池的所有任务完成后，它最终会收缩到 corePoolSize 的大小。</p>
+</li>
+<li><p>线程池如何调优，最大数目如何确认？</p>
+<p>由于线程数的选定依赖于应用程序的类型，可能需要经过大量性能测试之后，才能得出最优的结果。<br>​</p>
+</li>
+<li><p>ThreadLocal原理，用的时候需要注意什么？</p>
+</li>
+</ol>
+<pre><code>1.ThreadLocal，成为线程本地变量，相当于是每个线程存在一个只对自己可见的值
+本地变量的一个副本。先set 在get 。 直接get 会发生空指针，解决办法是重写initialValue 方法，在初始化的时候。
+最常见的ThreadLocal使用场景为 用来解决数据库连接、Session管理
+</code></pre><ol start="19">
+<li><p>CountDownLatch 和 CyclicBarrier 的用法，以及相互之间的差别?</p>
+<p>区别<br>CountDownLatch 使一个线程A或是组线程A等待其它线程执行完毕后，一个线程A或是组线程A才继续执行。CyclicBarrier：一组线程使用await()指定barrier，所有线程都到达各自的barrier后，再同时执行各自barrier下面的代码。Semaphore：是用来控制同时访问特定资源的线程数量，它通过协调各个线程，以保证合理的使用公共资源<br>CountDownLatch是减计数方式，计数==0时释放所有等待的线程；CyclicBarrier是加计数方式，计数达到构造方法中参数指定的值时释放所有等待的线程。Semaphore，每次semaphore.acquire()，获取一个资源，每次semaphore.acquire(n)，获取n个资源，当达到semaphore 指定资源数量时就不能再访问线程处于阻塞，必须等其它线程释放资源，semaphore.relase()每次资源一个资源，semaphore.relase(n)每次资源n个资源。<br>CountDownLatch当计数到0时，计数无法被重置；CyclicBarrier计数达到指定值时，计数置为0重新开始。<br>CountDownLatch每次调用countDown()方法计数减一，调用await()方法只进行阻塞，对计数没任何影响；CyclicBarrier只有一个await()方法，调用await()方法计数加1，若加1后的值不等于构造方法的值，则线程阻塞。<br>CountDownLatch、CyclikBarrier、Semaphore 都有一个int类型参数的构造方法。CountDownLatch、CyclikBarrier这个值作为计数用，达到该次数即释放等待的线程，而Semaphore 中所有acquire获取到的资源达到这个数，会使得其它线程阻塞。<br>共同<br>CountDownLatch与CyclikBarrier两者的共同点是都具有await()方法，并且执行此方法会引起线程的阻塞，达到某种条件才能继续执行（这种条件也是两者的不同）。Semaphore，acquire方获取的资源达到最大数量时，线程再次acquire获取资源时，也会使线程处于阻塞状态。CountDownLatch与CyclikBarrier两者的共同点是都具有await()方法，并且执行此方法会引起线程的阻塞，达到某种条件才能继续执行（这种条件也是两者的不同）。Semaphore，acquire方获取的资源达到最大数量时，线程再次acquire获取资源时，也会使线程处于阻塞状态。CountDownLatch、CyclikBarrier、Semaphore 都有一个int类型参数的构造方法。<br>CountDownLatch、CyclikBarrier、Semaphore 都有一个int类型参数的构造方法。</p>
+</li>
+<li><p>LockSupport工具</p>
+<p>LockSupport是用来创建锁和其他同步类的基本线程阻塞原语。LockSupport 提供park()和unpark()方法实现阻塞线程和解除线程阻塞，LockSupport和每个使用它的线程都与一个许可(permit)关联。permit相当于1，0的开关，默认是0，调用一次unpark就加1变成1，调用一次park会消费permit, 也就是将1变成0，同时park立即返回。再次调用park会变成block（因为permit为0了，会阻塞在这里，直到permit变为1）, 这时调用unpark会把permit置为1。每个线程都有一个相关的permit, permit最多只有一个，重复调用unpark也不会积累。</p>
+</li>
+<li>Condition接口及其实现原理</li>
+</ol>
+<ul>
+<li>Condition接口是jdk1.5后出现的新的线程间通信的接口，其中await()方法和signal()方法能更高效，更安全的进行线程之间的通信</li>
+<li>Condition对象依赖于lock对象的，创建Condition:lock.newCondition();</li>
+<li>每个Condition都包含一个等待队列，当前线程调用Condition.await()方法，将会以当前线程构造节点。并将节点从尾部加入等待队列。调用Condition.signal()方法。将会唤醒在等待队列中等待时间最长的节点(首节点)。在唤醒节点之前，会将节点移到同步队列中。</li>
+</ul>
+<p>22、Fork/Join框架的理解</p>
+<p>23、分段锁的原理,锁力度减小的思考</p>
+<p>​    * </p>
+<p>24、八种阻塞队列以及各个阻塞队列的特性</p>
+<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><ol>
+<li><p>BeanFactory 和 FactoryBean？</p>
+<p>BeanFactory是个Factory，也就是IOC容器或对象工厂，FactoryBean是个Bean。在Spring中，所有的Bean都是由BeanFactory(也就是IOC容器)来进行管理的。但对FactoryBean而言，这个Bean不是简单的Bean，而是一个能生产或者修饰对象生成的工厂Bean,它的实现与设计模式中的工厂模式和修饰器模式类似</p>
+</li>
+<li><p>Spring IOC 的理解，其初始化过程？</p>
+<p>Ioc 就是控制反转（Inversion of control）<br>分为三步：<br>Resource定位（Bean的定义文件定位）<br>将Resource定位好的资源载入到BeanDefinition<br>将BeanDefiniton注册到容器中</p>
+</li>
+<li><p>BeanFactory 和 ApplicationContext？</p>
+<p>ApplicationContext接口,它由BeanFactory接口派生而来，因而提供BeanFactory所有的功能。ApplicationContext以一种更向面向框架的方式工作以及对上下文进行分层和实现继承，ApplicationContext包还提供了以下的功能：<br>• MessageSource, 提供国际化的消息访问<br>• 资源访问，如URL和文件<br>• 事件传播<br>• 载入多个（有继承关系）上下文 ，使得每一个上下文都专注于一个特定的层次，比如应用的web层  </p>
+</li>
+<li><p>Spring Bean 的生命周期，如何被管理的？</p>
+<p>初始化，实现了那些接口，在spring 对于单例的bean Singleton ctx.close()被关闭的时候，才会调用distroy方法<br>销毁bean。对于 非单例的bean prototype 对象交给你以后，spring 不会再管理该对象了。</p>
+</li>
+<li><p>Spring Bean 的加载过程是怎样的？</p>
+<p>1.获取配置文件资源</p>
+<p>2.对获取的xml资源进行一定的处理检验</p>
+<p>3.处理包装资源</p>
+<p>4.解析处理包装过后的资源</p>
+<p>5.加载提取bean并注册(添加到beanDefinitionMap中)</p>
+</li>
+<li><p>如果要你实现Spring AOP，请问怎么实现？</p>
+<p>使用jdk动态代理或者使用cglib动态代理</p>
+</li>
+<li>如果要你实现Spring IOC，你会注意哪些问题？</li>
+</ol>
+<ol start="8">
+<li><p>Spring 是如何管理事务的，事务管理机制？</p>
+<ul>
+<li><p>Spring管理事务可以分为2类，编程式和声明式</p>
+</li>
+<li><p>声明式事务由Spring Aop进行，其中有一个非常重要的属性:事务属性，事务有四种属性，Spring在TransactionDefinition接口中定义这些属性，以供platfromTransactionManager使用。platfromTransactionManager是Spring事务管理的核心接口</p>
+<p> public interface TransactionDefinition { </p>
+<pre><code>    int getPropagationBehavior();//返回事务的传播行为。 
+    int getIsolationLevel();//返回事务的隔离级别，事务管理器根据它来控制另外一个事务可以看到本                               事务内的哪些数据。 
+    int getTimeout();//返回事务必须在多少秒内完成。 
+    boolean isReadOnly();//事务是否只读，事务管理器能够根据这个返回值进行优化，确保事务是只读                             的。 
+}
+1. 事务的传播行为如9点面试所示
+2. 事务的隔离级别:
+</code></pre><ul>
+<li>ISOLATION_DEFAULT这是一个PlatformTransactionManager默认的隔离级别，使用数据库默认的事务隔离级别。</li>
+<li>ISOLATION_READ_UNCOMMITTED这是事务最低的级别，它允许另外一个事务可以看到这个事务未提交的数据。这种级别会引起脏读，不可重复读和幻读。</li>
+<li>ISOLATION_READ_COMMITTED保证一个事务修改的数据提交后才能被另一个事务读取。另一个事务不能读取该事务未提交的数据。这个级别会避免脏读，但是可能会出现不可重复读和幻读</li>
+<li>ISOLATION_REPEATABLE_READ保证一个事务不能读取另一个事务未提交的数据，还保证了避免不可重复读的产生，但是可能出现幻读</li>
+<li>ISOLATION_SERIALIZABLE这是花费代价最高但是最可靠的事务隔离级别，事务被处理为顺序执行，防止脏读，不可重复读，幻读。<ol start="3">
+<li>数据库事务可能出现的问题：</li>
+</ol>
+</li>
+<li>Dirty reads（脏读）。也就是说，比如事务A的未提交（还依然缓存）的数据被事务B读走，如果事务A失败回滚，会导致事务B所读取的的数据是错误的。 </li>
+<li>non-repeatable reads（数据不可重复读）。比如事务A中两处读取数据-total-的值。在第一读的时候，total是100，然后事务B就把total的数据改成 200，事务A再读一次，结果就发现，total竟然就变成200了，造成事务A数据混乱。 </li>
+<li>phantom reads（幻象读数据），这个和non-repeatable reads相似，也是同一个事务中多次读不一致的问题。但是non-repeatable reads的不一致是因为他所要取的数据集被改变了（比如total的数据），但是phantom reads所要读的数据的不一致却不是他所要读的数据集改变，而是他的条件数据集改变。比如Select account.id where account.name=”ppgogo*”,第一次读去了6个符合条件的id，第二次读取的时候，由于事务b把一个帐号的名字由”dd”改成”ppgogo1”，结果取出来了7个数据。</li>
+</ul>
+</li>
+<li><p>编程式事务</p>
+<ol>
+<li>将事务管理代码嵌入业务方法中控制事务的提交和回滚。程序员通过代码实现事务的开始，异常时事务的回滚，程序正常时事务的提交。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="8">
+<li><p>Spring 的不同事务传播行为有哪些，干什么用的？</p>
+<p>Spring的TransactionDefinition中定义了七个事务传播行为:</p>
+<ul>
+<li>PROPAGATION_REQUIRED:如果存在一个事务，则支持当前事务，如果没有事务则开启一个新的事务</li>
+<li>PROPAGATION_SUPPORTS:如果存在一个事务，支持当前事务，如果没有事务，则非事务的执行</li>
+<li>PROPAGATION_MANDATORY:如果存在一个事务，支持当前事务，如果没有一个活动的事务，则抛出异常</li>
+<li>PROPAGATION_REQUIRES_NEW：总是开启一个新的事务，如果事务已经存在，则将这个存在的事务挂起</li>
+<li>PROPAGATION_NOT_SUPPORTED:总是非事务的执行，并挂起任何存在的事务</li>
+<li>PROPAGATION_NEVER:总是非事务的执行，如果存在活动事务，则抛出异常</li>
+<li>PROPAGATION_NESTED:如果一个活动的事务存在，则运行在一个嵌套的事务中，如果没有活动事务，则按TransactionDefinition.PROPAGATION_REQUIRED事务进行操作</li>
+</ul>
+</li>
+<li><p>Spring 中用到了那些设计模式？</p>
+<ul>
+<li>简单工厂:根据传入参数的不同，动态生成不同的类</li>
+<li>工厂方法:定义一个用于创建对象的接口，让子类决定去创建哪个类</li>
+<li>单例模式:保证一个类只有一个实例</li>
+<li>适配器模式:将一个类的接口转换成客户希望的另外一个接口</li>
+<li>装饰模式:动态的给一个对象添加额外的职责</li>
+<li>代理模式:AOP就是动态代理机制实现，分为静态代理和动态代理，动态代理可以选择jdk自带类实现，也可以选择使用cglib的jar包去实现</li>
+<li>观察者模式:定义对象间一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新</li>
+<li>策略模式:封装一系列算法，并且可以使它们可相互替换，策略模式封装了变化。</li>
+<li>模板模式:定义一个算法的骨架，其详细步骤被延迟到子类去实现，用于SpringJDBC中的JdbcTemplate</li>
+</ul>
+</li>
+<li><p>Spring MVC 的工作原理？</p>
+<ol>
+<li>首先用户发送请求——&gt;DispatcherServlet，前端控制器收到请求后自己不进行处理，而是委托给其他的解析器进行处理，作为统一访问点，进行全局的流程控制；</li>
+<li>DispatcherServlet——&gt;HandlerMapping， HandlerMapping 将会把请求映射为HandlerExecutionChain 对象（包含一个Handler 处理器（页面控制器）对象、多个HandlerInterceptor 拦截器）对象，通过这种策略模式，很容易添加新的映射策略；</li>
+<li>DispatcherServlet——&gt;HandlerAdapter，HandlerAdapter 将会把处理器包装为适配器，从而支持多种类型的处理器，即适配器设计模式的应用，从而很容易支持很多类型的处理器；</li>
+<li>HandlerAdapter——&gt;处理器功能处理方法的调用，HandlerAdapter 将会根据适配的结果调用真正的处理器的功能处理方法，完成功能处理；并返回一个ModelAndView 对象（包含模型数据、逻辑视图名）；</li>
+<li>ModelAndView的逻辑视图名——&gt; ViewResolver， ViewResolver 将把逻辑视图名解析为具体的View，通过这种策略模式，很容易更换其他视图技术；</li>
+<li>View——&gt;渲染，View会根据传进来的Model模型数据进行渲染，此处的Model实际是一个Map数据结构，因此很容易支持其他视图技术；</li>
+<li>返回控制权给DispatcherServlet，由DispatcherServlet返回响应给用户，到此一个流程结束。</li>
+</ol>
+</li>
+<li><p>Spring 循环注入的原理？</p>
+<p>循环注入:有类A，类B，类C，A的构造器参数有类B，类B的构造器参数有类C，类C的构造器参数有类A</p>
+</li>
+<li><p>Spring AOP的理解，各个术语，他们是怎么相互工作的？</p>
+</li>
+<li><p>Spring 如何保证 Controller 并发的安全？</p>
+<p>将Controller层交给Spring 的bean进行管理，并设置该bean 的scope为prototype。</p>
+</li>
+<li><p>Spring 中的Bean是否是线程安全的?<br>我的理解是:通过设置scope，来考虑对应的bean的线程安全的问题。</p>
+<ul>
+<li>Spring中bean的状态默认为Singleton，表示在IOC容器中Bean是单例的，此时因为使用的是同一个对象的资源。在改变该资源中的状态时会出现混乱的状态。一般修饰无状态的类(比如说Dao层代码)</li>
+<li>而scope被设置为prototype时，该bean在每次使用时都会重新创建一个实例，适用于管理有状态的bean。比如说Controller层代码。</li>
+<li>request表示该针对每一次HTTP请求都会产生一个新的Bean，同时该bean仅在当前HTTP request内有效</li>
+<li>session用于Web应用程序上下文的Bean，针对每一次HTTP请求产生一个新的bean，同时该bean仅在当前HTTP session内有效</li>
+<li>global session 作用域类似于标准的Http Session 作用域，它仅仅基于portlet的web应用中才有意义。</li>
+</ul>
+</li>
+</ol>
+<h1 id="Netty"><a href="#Netty" class="headerlink" title="Netty"></a>Netty</h1><ol>
+<li><p>BIO、NIO和AIO</p>
+<ul>
+<li>BIO:现在服务端启动一个ServerSocket，然后在客户端启动socket来对服务端进行通行。当客户端发送请求时，会先咨询服务端是否有线程响应，如果没有则会一直等待或者遭到拒绝请求，如果有，则会等待线程请求结束后才继续执行</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>NIO:基于通道(Channel)和缓冲区(Buffer)进行操作,数据总是从通道读取到缓冲区中，或者从缓冲区中写入到通道中，NIO在通信方面使用单线程或者少量的线程，每个连接共用一个线程</p>
+</li>
+<li><p>AIO:</p>
+<p><img src="E:\test\Daliy-Study-LC\img\BIO和NIO.png"></p>
+</li>
+</ul>
+<p>2、Netty 的各大组件</p>
+<p>3、Netty的线程模型</p>
+<p>4、TCP 粘包/拆包的原因及解决方法</p>
+<p>5、了解哪几种序列化协议？包括使用场景和如何去选择</p>
+<p>6、Netty的零拷贝实现</p>
+<p>7、Netty的高性能表现在哪些方面</p>
+<h1 id="分布式相关"><a href="#分布式相关" class="headerlink" title="分布式相关"></a>分布式相关</h1><p>1、Dubbo的底层实现原理和机制</p>
+<p>2、描述一个服务从发布到被消费的详细过程</p>
+<p>3、分布式系统怎么做服务治理</p>
+<p>4、接口的幂等性的概念</p>
+<p>5、消息中间件如何解决消息丢失问题</p>
+<p>6、Dubbo的服务请求失败怎么处理</p>
+<p>7、重连机制会不会造成错误</p>
+<p>8、对分布式事务的理解</p>
+<p>9、如何实现负载均衡，有哪些算法可以实现？</p>
+<p>10、Zookeeper的用途，选举的原理是什么？</p>
+<p>11、数据的垂直拆分水平拆分。</p>
+<p>12、zookeeper原理和适用场景</p>
+<p>13、zookeeper watch机制</p>
+<p>14、redis/zk节点宕机如何处理</p>
+<p>15、分布式集群下如何做到唯一序列号</p>
+<p>16、如何做一个分布式锁</p>
+<p>17、用过哪些MQ，怎么用的，和其他mq比较有什么优缺点，MQ的连接是线程安全的吗</p>
+<p>18、MQ系统的数据如何保证不丢失</p>
+<p>19、列举出你能想到的数据库分库分表策略；分库分表后，如何解决全表查询的问题</p>
+<p>20、zookeeper的选举策略</p>
+<p>21、全局ID</p>
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><ol>
+<li>mysql分页有什么优化</li>
+<li>悲观锁、乐观锁<ul>
+<li>悲观锁：当用户去查询数据时，会将该表数据锁住不让其他用户访问操作</li>
+<li>乐观锁：用户去查询数据时，不会进行锁表操作，只有当用户准备去修改表中数据时，会判断当前表是否被其他用户使用(加个排他锁)，如果加锁失败，则会处于等待或抛出异常。如果成功加锁，才可对记录进行修改，事务完成后自动解锁</li>
+</ul>
+</li>
+</ol>
+<p>3、组合索引，最左原则</p>
+<p>4、mysql 的表锁、行锁</p>
+<p>5、mysql 性能优化</p>
+<p>6、mysql的索引分类：B+，hash；什么情况用什么索引</p>
+<p>7、事务的特性和隔离级别</p>
+<h1 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h1><p>1、Redis用过哪些数据数据，以及Redis底层怎么实现</p>
+<p>2、Redis缓存穿透，缓存雪崩</p>
+<p>3、如何使用Redis来实现分布式锁</p>
+<p>4、Redis的并发竞争问题如何解决</p>
+<p>5、Redis持久化的几种方式，优缺点是什么，怎么实现的</p>
+<p>6、Redis的缓存失效策略</p>
+<p>7、Redis集群，高可用，原理</p>
+<p>8、Redis缓存分片</p>
+<p>9、Redis的数据淘汰策略</p>
+<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><p>1、详细jvm内存模型</p>
+<p>2、讲讲什么情况下回出现内存溢出，内存泄漏？</p>
+<p>3、说说Java线程栈</p>
+<p>4、JVM 年轻代到年老代的晋升过程的判断条件是什么呢？</p>
+<p>5、JVM 出现 fullGC 很频繁，怎么去线上排查问题？</p>
+<p>6、类加载为什么要使用双亲委派模式，有没有什么场景是打破了这个模式？</p>
+<p>7、类的实例化顺序</p>
+<p>8、JVM垃圾回收机制，何时触发MinorGC等操作</p>
+<p>9、JVM 中一次完整的 GC 流程（从 ygc 到 fgc）是怎样的</p>
+<p>10、各种回收器，各自优缺点，重点CMS、G1</p>
+<p>11、各种回收算法</p>
+<p>12、OOM错误，stackoverflow错误，permgen space错误</p>
+<h1 id="java-问题总结"><a href="#java-问题总结" class="headerlink" title="java 问题总结"></a>java 问题总结</h1><p>1、Array中可以用泛型吗?</p>
+<p>　　这可能是Java泛型面试题中最简单的一个了，当然前提是你要知道Array事实上并不支持泛型，这也是为什么Joshua Bloch在Effective Java一书中建议使用List来代替Array，因为List可以提供编译期的类型安全保证，而Array却不能。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/11/面试经历/" rel="prev" title="面试情况">
+                面试情况 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://raw.githubusercontent.com/a1186873082/Daliy-Study-LC/Daliy-Study/img/my.png" alt="Li Chen">
+            
+              <p class="site-author-name" itemprop="name">Li Chen</p>
+              <p class="site-description motion-element" itemprop="description">hello every day</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java基础"><span class="nav-number">1.</span> <span class="nav-text">Java基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA并发"><span class="nav-number">1.1.</span> <span class="nav-text">JAVA并发</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring"><span class="nav-number">2.</span> <span class="nav-text">Spring</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Netty"><span class="nav-number">3.</span> <span class="nav-text">Netty</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式相关"><span class="nav-number">4.</span> <span class="nav-text">分布式相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库"><span class="nav-number">5.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缓存"><span class="nav-number">6.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM"><span class="nav-number">7.</span> <span class="nav-text">JVM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#java-问题总结"><span class="nav-number">8.</span> <span class="nav-text">java 问题总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Li Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
