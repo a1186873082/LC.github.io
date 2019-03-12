@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="二维数组 二维数组的length属性取得是二维数组的行数    如果要将String字符串的某某字符给替换，首先考虑下charAt()方法。重新做一遍，将空格替换成8   StringBuffer是线程安全的，StringBuilder是线程不安全的   Static中在未实例化对象时，只能使用同为static的方法或属性   抽象类和接口不能实例化  抽象类:abstract只能用public">
+<meta name="description" content="线程线程调度分为协同式调度和抢占式调度，Java使用的是抢占式调度，也就是每个线程将由操作系统来分配执行时间，线程的切换不由线程本身来决定（协同式调度）。这就是平台独立的原因。  对于线程的3个结论 当多个线程同时执行synchronized(x){}同步代码块时呈同步效果 当多个线程同时执行x对象中的synchronized同步方法时呈同步效果 当多个线程同时执行x对象中的synchronize">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日一查">
-<meta property="og:url" content="http://yoursite.com/2019/03/12/查漏补缺/index.html">
+<meta property="og:title" content="线程">
+<meta property="og:url" content="http://yoursite.com/2019/03/12/java/线程/index.html">
 <meta property="og:site_name" content="李晨的兴趣博客">
-<meta property="og:description" content="二维数组 二维数组的length属性取得是二维数组的行数    如果要将String字符串的某某字符给替换，首先考虑下charAt()方法。重新做一遍，将空格替换成8   StringBuffer是线程安全的，StringBuilder是线程不安全的   Static中在未实例化对象时，只能使用同为static的方法或属性   抽象类和接口不能实例化  抽象类:abstract只能用public">
+<meta property="og:description" content="线程线程调度分为协同式调度和抢占式调度，Java使用的是抢占式调度，也就是每个线程将由操作系统来分配执行时间，线程的切换不由线程本身来决定（协同式调度）。这就是平台独立的原因。  对于线程的3个结论 当多个线程同时执行synchronized(x){}同步代码块时呈同步效果 当多个线程同时执行x对象中的synchronized同步方法时呈同步效果 当多个线程同时执行x对象中的synchronize">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-12T04:55:00.863Z">
+<meta property="og:updated_time" content="2019-03-12T06:13:49.058Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每日一查">
-<meta name="twitter:description" content="二维数组 二维数组的length属性取得是二维数组的行数    如果要将String字符串的某某字符给替换，首先考虑下charAt()方法。重新做一遍，将空格替换成8   StringBuffer是线程安全的，StringBuilder是线程不安全的   Static中在未实例化对象时，只能使用同为static的方法或属性   抽象类和接口不能实例化  抽象类:abstract只能用public">
+<meta name="twitter:title" content="线程">
+<meta name="twitter:description" content="线程线程调度分为协同式调度和抢占式调度，Java使用的是抢占式调度，也就是每个线程将由操作系统来分配执行时间，线程的切换不由线程本身来决定（协同式调度）。这就是平台独立的原因。  对于线程的3个结论 当多个线程同时执行synchronized(x){}同步代码块时呈同步效果 当多个线程同时执行x对象中的synchronized同步方法时呈同步效果 当多个线程同时执行x对象中的synchronize">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/12/查漏补缺/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/12/java/线程/">
 
 
 
 
 
-  <title>每日一查 | 李晨的兴趣博客</title>
+  <title>线程 | 李晨的兴趣博客</title>
   
 
 
@@ -266,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/查漏补缺/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/java/线程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Li Chen">
@@ -283,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">每日一查</h1>
+          <h1 class="post-title" itemprop="name headline">线程</h1>
         
 
         <div class="post-meta">
@@ -295,7 +295,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-12T13:00:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-12T20:39:49+08:00">
                 2019-03-12
               </time>
             
@@ -355,120 +355,40 @@
       
 
       
-        <ol>
-<li><p><strong>二维数组</strong></p>
-<p>二维数组的length属性取得是二维数组的行数</p>
-</li>
-</ol>
-<ol start="2">
-<li><strong>如果要将String字符串的某某字符给替换，首先考虑下charAt()方法。重新做一遍，将空格替换成8</strong></li>
-</ol>
-<ol start="3">
-<li><strong>StringBuffer是线程安全的，StringBuilder是线程不安全的</strong></li>
-</ol>
-<ol start="4">
-<li><strong>Static中在未实例化对象时，只能使用同为static的方法或属性</strong></li>
-</ol>
-<ol start="5">
-<li><p><strong>抽象类和接口不能实例化</strong></p>
+        <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><p>线程调度分为协同式调度和抢占式调度，Java使用的是抢占式调度，也就是每个线程将由操作系统来分配执行时间，线程的切换不由线程本身来决定（协同式调度）。这就是平台独立的原因。</p>
 <ol>
-<li><p>抽象类:abstract只能用public,abstract和final进行修饰，abstract类可以实现超类的所有抽象方法，也可以实现部分超类的抽象方法，但是非抽象类必须实现超类(超类是抽象类)所有抽象方法才行.abstract可以修饰类或方法，但不能修饰属性，抽象方法没有方法体，即没有大括号，</p>
-</li>
-<li><p>接口:接口只能用 public和abstract进行修饰。</p>
-<p>接口可以实现多实现，接口中定义属性为常量</p>
-</li>
-</ol>
-</li>
-</ol>
-<ol start="6">
-<li><strong>Spring有AOP,但是自身未提供日志系统</strong></li>
-</ol>
-<ol start="7">
-<li><p>类之间的依赖关系通过配置文件进行建立，而不是通过ORM建立的</p>
-</li>
-<li><p>Integer类型的数据，如果在-128-127之间时，创建的对象会放到常量池中，如果new Integer时，会在堆中重新开辟一个空间存放，此时会与正常的Integer对象的引用值不同</p>
-</li>
-<li><p><strong>一个类中可以有多个main方法，但是public static void main(String[] args){}只能有一个。</strong></p>
-</li>
-<li><p><strong>子类可以继承父类的所有成员，只是私有成员无法使用而已</strong></p>
-</li>
-<li><p><strong>继承要保证3个原则。3同一小一大</strong></p>
-<p><strong>3同</strong>:返回类型相同，方法名相同，参数列表相同</p>
-<p><strong>一小</strong>:子类方法throw异常必须比父类小或者相等</p>
-<p><strong>一大</strong>:子类方法的访问权限修饰符必须大于等于父类的权限修饰符</p>
-</li>
-<li><p>补码,反码和原码:</p>
-<p><a href="https://www.nowcoder.com/questionTerminal/a568949ffbfc4a20977a2dab786032dd" target="_blank" rel="noopener">https://www.nowcoder.com/questionTerminal/a568949ffbfc4a20977a2dab786032dd</a></p>
-<p>~10为10全部取反得到的结果</p>
-<p>~10的原码为11111111 11111111 11111111 11110101（这个就是补码）  </p>
-<p>~10的反码为10000000 00000000 00000000 00001010（最高位符号位，不变，其余位取反） </p>
-<p>~10的补码为10000000 00000000 00000000 00001011（负数的补码=反码+1)</p>
-<p>也就是说，-10=~10+1</p>
-<p>正数的补码，反码，原码相同</p>
-<p>负数的反码为原码除了符号外，按位取反，</p>
-<p>负数的补码为反码加1</p>
-</li>
-<li><p>父类用private修饰的方法对于子类是不可见的，比如private final void fct()对于子类来说不可见，因此如果子类中也有private final void fct()就不会报错，因为这里是2个方法，但是如果将父类中的private修改成public或protected则会出错</p>
-</li>
-<li><p><em>switch(){}分支语句中如果其中一个分支没有break;终止，则会继续进行下去。在jdk1.7以后，switch(x)中x可以为字符串 ，在1.7以前x只能为byte,short,char,int</em></p>
-<p>switch(){}分支语句中，switch第一次进入case语句的地方为()中的数字</p>
-</li>
-<li><p><strong>ceil,floor,round的区别</strong>：</p>
-<p>ceil，大于等于该值的最小一个整数</p>
-<p>floor,小鱼等于该值的最大一个整数</p>
-<p>round,离该值最近的一个整数</p>
-</li>
-<li><p><strong>ThreadLocal(线程变量):</strong></p>
-<p>1、线程变量是为每一个线程创建一个本地副本，可以实现线程内部的资源共享，而线程外部是互斥的，</p>
-<p>2、ThreadLocal是以空间换时间，而线程同步是以时间换空间。</p>
-<p>3、在ThreadLocal类中有一个Map，用于存储每一个线程的变量副本</p>
-</li>
-<li><p><strong>==的优先级要高于三目运算符。</strong></p>
-</li>
-<li><p><strong>引用传递中，如果对引用进行修改，不会影响原对象，只有对引用内部的值进行修改，才会影响原对象。</strong></p>
-</li>
-<li><p><strong>private方法在本类中可以使用，无论用什么方法进行调用。。</strong></p>
-</li>
-<li><p>java属于解释性的语言，在运行时才会执行指令，且低版本的jvm不能运行高版本的java代码</p>
-</li>
-<li><p>==在比较基本数据类型时，比较的是两边的内容，float a = 2.0f,long b = 2l;a==b为 true</p>
-</li>
-<li><p>整数型默认为int型，小数型默认为double型</p>
-</li>
-<li><p>c++知识点集合:</p>
-<p>(1). 公有继承的公有成员，可以直接访问</p>
-<p>(2). 公有继承的私有成员，不可以访问</p>
-<p>(3). 公有继承的保护成员，不可以直接访问</p>
-<p>(4). 私有继承的公有成员，不可以直接访问</p>
-</li>
-<li><p>Math.round()代表四舍五入，Math.round(11.5)=12;</p>
-<p>Math.ceil代表天花板:Math.ceil(11.2)=12.0;</p>
-<p>Math.floor代表地板:Math.floor(11.8)=11.0;</p>
-</li>
-<li><p>使用super()或者this()方法是必须放在构造函数的第一行，this()中存在调用super(),所以this()和super()不能出现在同一个构造函数中。</p>
-</li>
-<li><p>接口可以多继承，类只能单继承。</p>
-</li>
-<li><p>例如: i = i++;这种表达式执行完后，i为多少，实际上就是为i的初始化值，因为相当于一开始将i设置到一个temp临时变量中。</p>
-</li>
-<li><p>abstract抽象类和接口都不能实例化。但是抽象类有构造方法，接口没有构造方法</p>
-<p>尽量多使用接口，少使用抽象类继承，因为继承耦合度太高</p>
-</li>
-<li><p>方法名可以和类名一致</p>
-</li>
-<li><p>Throwable为Exception和Error的基类，Exception包含RuntimeException和非运行时异常</p>
-</li>
-<li><p>web中会话跟踪技术，使得无状态的Http协议，变成带有状态编程。也就是在进行通信时可以携带客户端的状态。存在以下4中会话跟踪技术:</p>
-<ul>
-<li>隐藏表单域:<input type="hidden" value></li>
-<li>url重写:在URL后面拼接参数</li>
-<li>Cookie:服务器使用SET-Cookie头标将它作为HTTP响应的一部分传送到客户端，客户端被请求保存Cookie值。</li>
-<li>Session:使用setAttribute(String str, Object obj)带参数</li>
+<li>对于线程的3个结论<ul>
+<li>当多个线程同时执行synchronized(x){}同步代码块时呈同步效果</li>
+<li>当多个线程同时执行x对象中的synchronized同步方法时呈同步效果</li>
+<li>当多个线程同时执行x对象中的synchronized(this)代码块时呈同步效果</li>
+<li>但是当不同对象锁之间，比如synchronized(x1){}此时与synchronized(x){}之间呈异步效果</li>
 </ul>
 </li>
-<li><p>使用Condition代替传统的Object中的wait/notify/notifyAll方法，利用await()、signal()这种方式会更加高效</p>
-</li>
+<li>查漏补缺</li>
 </ol>
+<ul>
+<li><p><strong>脏读</strong> ：在线程没实现同步时，有可能出现脏读现象，原因是以异步方式去操作同一资源数据</p>
+<p>模拟实现:</p>
+<ul>
+<li><p>模拟同一资源数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Source &#123;</span><br><span class="line">    private List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();</span><br><span class="line">    public synchronized void a() &#123;</span><br><span class="line">        System.out.println(&quot;我在使用A&quot;);</span><br><span class="line">        list.add(1);</span><br><span class="line">    &#125;</span><br><span class="line">    public synchronized int getSize()&#123;</span><br><span class="line">        return list.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模拟脏读实现代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class MyService &#123;</span><br><span class="line">	//此时业务方法未加锁是脏读出现的主要原因</span><br><span class="line">    public Source addService(Source source)&#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            if(source.getSize()&lt;1)&#123;</span><br><span class="line">                Thread.sleep(2000);</span><br><span class="line">                source.a();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return source;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+</li>
+<li><p>类锁和对象锁</p>
+<ul>
+<li>线程中锁静态方法，表明将整个类文件给锁住，Class锁可以对类的所有实例对象起作用。</li>
+<li>线程中锁非静态方法，指的是锁当前实例对象。其他实例对象进入时，为异步操作。</li>
+<li>如果锁类和锁对象同时存在时，此时也为异步操作，因为此时持有不同的锁</li>
+</ul>
+</li>
+<li><p>类中无论是否存在内置类，与正常类的线程一致，同一个对象监视器为同步执行，不同对象监视器为异步执行</p>
+</li>
+</ul>
 
       
     </div>
@@ -499,8 +419,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/12/Linux命令/" rel="next" title="Linux命令">
-                <i class="fa fa-chevron-left"></i> Linux命令
+              <a href="/2019/03/12/设计模式/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -509,8 +429,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/12/设计模式/" rel="prev" title>
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/12/Spring源码总结/spring源码学习/" rel="prev" title="Spring源码学习">
+                Spring源码学习 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -563,8 +483,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -626,6 +555,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线程"><span class="nav-number">1.</span> <span class="nav-text">线程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

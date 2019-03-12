@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="java,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="JVM性能调优 jvm在堆中内存有以下区域:持久带，年轻带与年老带:  持久带:主要用于存放静态类型的数据 年轻带:分为1个eden区和2个survivor区.所有新生成的对象都放在年轻带，其中，大部分对象在eden区中生成，当eden区满的时候，将还存活的对象复制到survivor区,当其中一个survivor区满时。还存活的对象被复制到另一个survivor区，当此时另一个survivor区也">
-<meta name="keywords" content="lichen">
+<meta name="description" content="算法快速排序的思想:（i=0,j=9,9为数组长度） 1.从数组X1中挖出数据，赋值给temp 2.将temp的值与数组中从右往左的值进行比较，如果找到小于等于temp的值，则挖出数据存到数组X1中，此时该       位置处于挖出数据状态(比如X8)，i++。 3.将temp的值与数组中从左往右的值进行比较，如果找到大于等于temp的值，则挖出数据存到数组X8中，j–; 4.重复上面2,3步。i">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="李晨的兴趣博客">
-<meta property="og:url" content="http://yoursite.com/2019/03/12/jvm虚拟机/JVM性能调优/index.html">
+<meta property="og:title" content="算法">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/java/算法/index.html">
 <meta property="og:site_name" content="李晨的兴趣博客">
-<meta property="og:description" content="JVM性能调优 jvm在堆中内存有以下区域:持久带，年轻带与年老带:  持久带:主要用于存放静态类型的数据 年轻带:分为1个eden区和2个survivor区.所有新生成的对象都放在年轻带，其中，大部分对象在eden区中生成，当eden区满的时候，将还存活的对象复制到survivor区,当其中一个survivor区满时。还存活的对象被复制到另一个survivor区，当此时另一个survivor区也">
+<meta property="og:description" content="算法快速排序的思想:（i=0,j=9,9为数组长度） 1.从数组X1中挖出数据，赋值给temp 2.将temp的值与数组中从右往左的值进行比较，如果找到小于等于temp的值，则挖出数据存到数组X1中，此时该       位置处于挖出数据状态(比如X8)，i++。 3.将temp的值与数组中从左往右的值进行比较，如果找到大于等于temp的值，则挖出数据存到数组X8中，j–; 4.重复上面2,3步。i">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-21T14:55:43.894Z">
+<meta property="og:updated_time" content="2019-03-12T06:13:29.056Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="李晨的兴趣博客">
-<meta name="twitter:description" content="JVM性能调优 jvm在堆中内存有以下区域:持久带，年轻带与年老带:  持久带:主要用于存放静态类型的数据 年轻带:分为1个eden区和2个survivor区.所有新生成的对象都放在年轻带，其中，大部分对象在eden区中生成，当eden区满的时候，将还存活的对象复制到survivor区,当其中一个survivor区满时。还存活的对象被复制到另一个survivor区，当此时另一个survivor区也">
+<meta name="twitter:title" content="算法">
+<meta name="twitter:description" content="算法快速排序的思想:（i=0,j=9,9为数组长度） 1.从数组X1中挖出数据，赋值给temp 2.将temp的值与数组中从右往左的值进行比较，如果找到小于等于temp的值，则挖出数据存到数组X1中，此时该       位置处于挖出数据状态(比如X8)，i++。 3.将temp的值与数组中从左往右的值进行比较，如果找到大于等于temp的值，则挖出数据存到数组X8中，j–; 4.重复上面2,3步。i">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/12/jvm虚拟机/JVM性能调优/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/11/java/算法/">
 
 
 
 
 
-  <title> | 李晨的兴趣博客</title>
+  <title>算法 | 李晨的兴趣博客</title>
   
 
 
@@ -266,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/jvm虚拟机/JVM性能调优/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/java/算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Li Chen">
@@ -283,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">算法</h1>
         
 
         <div class="post-meta">
@@ -295,8 +295,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-12T12:50:38+08:00">
-                2019-03-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T20:39:49+08:00">
+                2019-03-11
               </time>
             
 
@@ -305,6 +305,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -333,63 +355,30 @@
       
 
       
-        <h1 id="JVM性能调优"><a href="#JVM性能调优" class="headerlink" title="JVM性能调优"></a>JVM性能调优</h1><ol>
-<li><p>jvm在堆中内存有以下区域:持久带，年轻带与年老带:</p>
-<ul>
-<li>持久带:主要用于存放静态类型的数据</li>
-<li>年轻带:分为1个eden区和2个survivor区.所有新生成的对象都放在年轻带，其中，大部分对象在eden区中生成，当eden区满的时候，将还存活的对象复制到survivor区,当其中一个survivor区满时。还存活的对象被复制到另一个survivor区，当此时另一个survivor区也满时，还存货的对象将可能会被复制到年老带</li>
-<li>年老带:在年轻带经过N次垃圾回收仍存活的对象，此时会被复制到年老带，年老带的GC为full gc.一般年老带会被设置为并发收集器</li>
-</ul>
-<p>一般，在JVM设置中，会考虑尽量减少full gc的频率</p>
-</li>
-</ol>
-<ol start="2">
-<li><p>内存泄漏:</p>
-<ul>
-<li>年老带被占满，可以是xmx设置大小不够，创建了成千上万的String，或实例对象，或是存在无法回收的垃圾对象</li>
-<li>持久带被占满，在滥用反射时有可能出现，大量动态反射生成的类不断被加载，导致perm区被占满，可以通过适当增大maxPermSize进行解决</li>
-<li>堆栈溢出:代码中存在递归未返回，循环调用等情况</li>
-</ul>
-</li>
-<li><p>常见配置:</p>
-<ul>
-<li><p>堆配置:</p>
-<p>-xmx：堆的最大大小</p>
-<p>-xms：堆的初始大小</p>
-<p>-xx:NewSize=n:设置年轻带大小</p>
-<p>-xx:NewRatio=n:设置年轻带和年老带的比值，如n为3，则表示年轻带和年老带比值为1:3</p>
-<p>-xx:SurvivorRatio=n:设置Eden区和两个Survivor区的比值。如n为3时。由于survivor为2个。所以Eden和survivor的比值为3:2，一个survivor区占总年轻带的1/5.</p>
-<p>-xx:MaxPermSize：设置持久带的大小</p>
-</li>
-<li><p><strong>收集器设置</strong></p>
-<p><strong>-XX:+UseSerialGC:</strong>设置串行收集器</p>
-<p><strong>-XX:+UseParallelGC:</strong>设置并行收集器</p>
-<p><strong>-XX:+UseParalledlOldGC:</strong>设置并行年老代收集器</p>
-<p><strong>-XX:+UseConcMarkSweepGC:</strong>设置并发收集器</p>
-<p><strong>垃圾回收统计信息</strong></p>
-<p><strong>-XX:+PrintGC</strong></p>
-<p><strong>-XX:+PrintGCDetails</strong></p>
-<p><strong>-XX:+PrintGCTimeStamps</strong></p>
-<p><strong>-Xloggc:filename</strong></p>
-<p><strong>并行收集器设置</strong></p>
-<p><strong>-XX:ParallelGCThreads=n</strong>:设置并行收集器收集时使用的CPU数。并行收集线程数。</p>
-<p><strong>-XX:MaxGCPauseMillis=n</strong>:设置并行收集最大暂停时间</p>
-<p><strong>-XX:GCTimeRatio=n</strong>:设置垃圾回收时间占程序运行时间的百分比。公式为1/(1+n)</p>
-<p><strong>并发收集器设置</strong></p>
-<p><strong>-XX:+CMSIncrementalMode:</strong>设置为增量模式。适用于单CPU情况。</p>
-<p><strong>-XX:ParallelGCThreads=n:</strong>设置并发收集器年轻代收集方式为并行收集时，使用的CPU数。并行收集线程数。</p>
-</li>
-<li><p>配置调优总结:s</p>
-<ol>
-<li>年轻带大小的选择:尽可能设大，直到接近系统的最低响应限制。此时年轻带收集发生的频率最小，也可以减少到达年老带的对象。</li>
-<li>年老带大小的选择:一般需要考虑会话并发率和会话持续时间等参数，如果堆设置小了。可能会造成内存碎片、高回收频率以及应用暂停而使用传统的标记清除方式，如果堆大了，则需要较长的收集时间。一般会参考:设置并发垃圾手机信息。持久带并发收集次数。传统GC信息。花在年轻代和年老代回收时间得比例</li>
-<li>一般。吞吐量优先的应用。会有一个很大的年轻代和一个较小的年老代。这样可以尽可能的回收掉大部分短期对象。</li>
-</ol>
-</li>
-</ul>
-</li>
-</ol>
-
+        <h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><p>快速排序的思想:（i=0,j=9,9为数组长度）</p>
+<p>1.从数组X1中挖出数据，赋值给temp</p>
+<p>2.将temp的值与数组中从右往左的值进行比较，如果找到小于等于temp的值，则挖出数据存到数组X1中，此时该       位置处于挖出数据状态(比如X8)，i++。</p>
+<p>3.将temp的值与数组中从左往右的值进行比较，如果找到大于等于temp的值，则挖出数据存到数组X8中，j–;</p>
+<p>4.重复上面2,3步。i==j时，将temp的数据赋值给数组中下标为i的值，</p>
+<p>范例 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public static void quick(int[] a,int l, int j)&#123;</span><br><span class="line">    if(l&lt;j) &#123;</span><br><span class="line">        int num = a.length;</span><br><span class="line">        int left = l;</span><br><span class="line">        int right = j;</span><br><span class="line">        int X = a[l];</span><br><span class="line">        while (left &lt; right) &#123;</span><br><span class="line">            while (left &lt; right &amp;&amp; X &lt;= a[right]) &#123;</span><br><span class="line">                right--;</span><br><span class="line">            &#125;</span><br><span class="line">            if (left &lt; right) &#123;</span><br><span class="line">                a[left] = a[right];</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            while (left &lt; right &amp;&amp; X &gt;= a[left]) &#123;</span><br><span class="line">                left++;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            if (left &lt; right) &#123;</span><br><span class="line">                a[right] = a[left];</span><br><span class="line">                right--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        a[left] = X;</span><br><span class="line">        System.out.println(l + &quot;,&quot; + &quot;left&quot; + &quot;,&quot; + j);</span><br><span class="line">        quick(a, l, left - 1);</span><br><span class="line">        quick(a, left + 1, j);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>红黑树的思想:</p>
+<p>求到叶子结点的最短路径的二叉树:(一般二叉树可以用递归思想来做)</p>
+<p>public int run(TreeNode root) {</p>
+<pre><code>    if(root == null){
+        return 0;
+    }
+    int left = run(root.left);
+    int right = run(root.right);
+    //加1是算上了根结点
+    if(left == 0 || right == 0){
+        return left+right+1;
+    }
+    System.out.println(&quot;left:&quot;+left+&quot;,right:&quot;+right);
+    //加1是算上了根结点
+    return Math.min(left,right)+1;
+}
+</code></pre>
       
     </div>
     
@@ -404,6 +393,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
 
       
       
@@ -413,8 +408,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/12/Spring源码总结/微服务学习之eureka注册中心的创建/" rel="next" title>
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2019/03/11/git学习/" rel="next" title="git操作">
+                <i class="fa fa-chevron-left"></i> git操作
               </a>
             
           </div>
@@ -423,8 +418,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/12/Spring源码总结/Spring Boot学习/" rel="prev" title>
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/11/图解https/" rel="prev" title="图解https">
+                图解https <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -504,7 +499,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -515,7 +510,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -526,7 +521,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -559,7 +554,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM性能调优"><span class="nav-number">1.</span> <span class="nav-text">JVM性能调优</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#算法"><span class="nav-number">1.</span> <span class="nav-text">算法</span></a></li></ol></div>
             
 
           </div>

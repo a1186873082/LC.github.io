@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="设计模式OO–面向对象编程的设计原则: 单一职责原则(SRP):每个类负责一个功能的实现。 封闭-开放原则(OCP):我们编写程序时应该做到对修改封闭，对扩展开放 依赖倒转原则(DIP):我们应该针对接口编程，而不是针对实现。高层模块不应该依赖于底层模块，二者都应该依赖于抽象。抽象不应该依赖于细节，细节应该依赖于抽象 里氏替换原则(LSP):子类应当可以替换父类并出现在父类能够出现的任何地方 接口">
+<meta name="keywords" content="lichen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李晨的兴趣博客">
+<meta property="og:url" content="http://yoursite.com/2019/03/12/设计模式/index.html">
+<meta property="og:site_name" content="李晨的兴趣博客">
+<meta property="og:description" content="设计模式OO–面向对象编程的设计原则: 单一职责原则(SRP):每个类负责一个功能的实现。 封闭-开放原则(OCP):我们编写程序时应该做到对修改封闭，对扩展开放 依赖倒转原则(DIP):我们应该针对接口编程，而不是针对实现。高层模块不应该依赖于底层模块，二者都应该依赖于抽象。抽象不应该依赖于细节，细节应该依赖于抽象 里氏替换原则(LSP):子类应当可以替换父类并出现在父类能够出现的任何地方 接口">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-12T06:06:33.715Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="李晨的兴趣博客">
+<meta name="twitter:description" content="设计模式OO–面向对象编程的设计原则: 单一职责原则(SRP):每个类负责一个功能的实现。 封闭-开放原则(OCP):我们编写程序时应该做到对修改封闭，对扩展开放 依赖倒转原则(DIP):我们应该针对接口编程，而不是针对实现。高层模块不应该依赖于底层模块，二者都应该依赖于抽象。抽象不应该依赖于细节，细节应该依赖于抽象 里氏替换原则(LSP):子类应当可以替换父类并出现在父类能够出现的任何地方 接口">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/12/设计模式/">
+
+
+
+
+
+  <title> | 李晨的兴趣博客</title>
+  
+
+
+
+
+
+
+
+
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李晨的兴趣博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">代码让我快乐</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/设计模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Li Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://raw.githubusercontent.com/a1186873082/Daliy-Study-LC/Daliy-Study/img/my.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李晨的兴趣博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-12T14:04:10+08:00">
+                2019-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h1 id="OO–面向对象编程的设计原则"><a href="#OO–面向对象编程的设计原则" class="headerlink" title="OO–面向对象编程的设计原则:"></a>OO–面向对象编程的设计原则:</h1><ul>
+<li>单一职责原则(SRP):每个类负责一个功能的实现。</li>
+<li>封闭-开放原则(OCP):我们编写程序时应该做到对修改封闭，对扩展开放</li>
+<li>依赖倒转原则(DIP):我们应该针对接口编程，而不是针对实现。高层模块不应该依赖于底层模块，二者都应该依赖于抽象。抽象不应该依赖于细节，细节应该依赖于抽象</li>
+<li>里氏替换原则(LSP):子类应当可以替换父类并出现在父类能够出现的任何地方</li>
+<li>接口分离原则(ISP):一个接口只处理一项相关的事情</li>
+</ul>
+<h1 id="常用的设计模式"><a href="#常用的设计模式" class="headerlink" title="常用的设计模式:"></a>常用的设计模式:</h1><ul>
+<li><p>单例模式:保证对象在任何时候都只会创建一次，并使用第一次创建的对象。</p>
+<p>例子:使用双重锁技术:将变量设置为volatile就是为了防止重排序问题</p>
+<p>public class Signated {</p>
+<pre><code>private static volatile Signated signated;
+
+private Signated() {}
+
+public static Signated getInstance() {
+    if(signated == null) {
+        synchronized(Signated.class) {
+            signated = new Signated();    
+        }
+    }
+    return signated;
+}
+</code></pre><p>}</p>
+<p>使用类初始化特性保证单例:</p>
+<p>public class Signated {</p>
+<pre><code>private Signated() {}
+static class Test {
+    public static Signated signated = new Signated();
+}
+
+public static Signated getInstance() {
+    return Test.signated;
+}
+</code></pre><p>}</p>
+<p>重排序问题:</p>
+<ul>
+<li><p>例如:重排序在初始化对象时可能会发生:</p>
+<p>Object obj = new Object();可以分解成如下三行伪代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">memory = allocate();     //1：分配对象的内存空间</span><br><span class="line">ctorOjbect(memory);    //2：初始化对象</span><br><span class="line">obj = memory;</span><br></pre></td></tr></table></figure>
+<p>其中2和3之间，可能会重排序，不一定是按照顺序执行的</p>
+</li>
+</ul>
+</li>
+<li><p>代理模式:</p>
+<ul>
+<li><p>静态代理</p>
+<p>原理:实现静态代理时，代理类和被代理类都必须实现同一个接口才能实现代理：</p>
+<p><em>for example</em>:</p>
+<p>public interface T{ void say()}</p>
+<p>public class A implements T{ void say();//do something}</p>
+<p>public class B implements T{T t = new A();  void say(// do something   t.say();  )}</p>
+</li>
+<li><p>动态代理:</p>
+<p>动态代理有2种代理方式:一种是JDK动态代理，一种是借用第三方插件的cglib代理。</p>
+<p>JDK动态代理**:需要实现InvocationHandler接口，重写invoke方法，在invoke方法</p>
+<p>中用 method.invoke(被代理对象,传入代理实例上方法调用的参数值的对象数组)，</p>
+<p>通过Proxy直接创建实例:</p>
+<p><em>Proxy.newProxyInstance( classLoader, new Class[] { Interface.class },  handler )</em>; </p>
+<p><strong>classLoader</strong>:定义代理类的类加载器，可获得已知的加载器</p>
+<p><strong>new Class[] { Interface.class }</strong>:希望代理类代理实现的接口列表</p>
+<p><strong>handler:InvocationHandle</strong>：接口的一个具体实现类的对象的引用</p>
+<p>​</p>
+<p>重写invoke方法：</p>
+<p><em>public Object invoke(Object proxy, Method method, Object[] args) throws Throwable</em></p>
+<p><strong>proxy</strong>:代理对象的引用，通过Proxy.newInstance获得的对象的引用，会自动调用invoke方法，如果                  &emsp;&emsp;&emsp;在invoke()方法中使用则会陷入死循环</p>
+<p><strong>method</strong>:代理类中接受的接口方法。</p>
+<p><strong>args</strong>:向代理对象的方法中传递的参数</p>
+<p>具体实现:</p>
+<p>public class TextProxyAgain implements InvocationHandler{</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private Object obj;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public TextProxyAgain(Object object) &#123;</span><br><span class="line">	this.obj = object;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public Object getProxy() &#123;</span><br><span class="line">	return Proxy.newProxyInstance(obj.getClass().getClassLoader(),</span><br><span class="line">			obj.getClass().getInterfaces(), </span><br><span class="line">			this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">	Object result = null;</span><br><span class="line">	System.out.println(&quot;进行操作&quot;);</span><br><span class="line">	System.out.println(args.length);</span><br><span class="line">	//不能使用proxy对象，会产生死循环</span><br><span class="line">	result=method.invoke(obj, args);</span><br><span class="line">	System.out.println(&quot;结束操作&quot;);</span><br><span class="line">	return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>}</p>
+<p>​</p>
+<p><strong>cglib动态代理</strong>:cglib实现需要借助第三方插件来进行:实现MethodInterceptor来进行cglib动态代理，</p>
+<p>代理对象的生成过程由Enhancer类实现，可以根据需要设置创建的子类；重写intercept方法，在intercept中添加任何逻辑</p>
+<p>具体实现:</p>
+<p>public class CglibProxy implements MethodInterceptor{<br>​    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//被代理对象</span><br><span class="line">private Object obj;</span><br><span class="line"></span><br><span class="line">public CglibProxy(Object obj) &#123;</span><br><span class="line">	this.obj = obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public Object getCglibProxy() &#123;</span><br><span class="line">	Enhancer en = new Enhancer();</span><br><span class="line">	//设置目标类</span><br><span class="line">	en.setSuperclass(obj.getClass());</span><br><span class="line">	//设置拦截对象</span><br><span class="line">	en.setCallback(this);</span><br><span class="line">	//创建代理对象</span><br><span class="line">	return en.create();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public Object intercept(Object arg0, Method arg1, Object[] arg2, MethodProxy methodProxy) throws Throwable &#123;</span><br><span class="line">	System.out.println(&quot;进行事务&quot;);</span><br><span class="line">	Object result = methodProxy.invokeSuper(arg0, arg2);</span><br><span class="line">	System.out.println(&quot;结束事务&quot;);</span><br><span class="line">	return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>}</p>
+<p>​</p>
+</li>
+</ul>
+</li>
+<li><p>组合模式:使得客户端看单个对象和对象的组合是同等的。某个类型的方法同时也接受自身类型作为参数</p>
+<p>例子:一般对象的组合是‘部分-整体’的层次结构。首先必须有一个所有类公共默认行为的接口</p>
+<pre><code>public interface Company {
+    public void add(Company c);
+
+    public void show(int depth);
+
+    public String taskManager(Company c);//职责管理
+
+    public void destory(Company c);
+}
+</code></pre><p>然后设计叶节点和枝节点:</p>
+<p>枝节点可以继续往下分支，有子节点，而叶节点没有子节点:</p>
+<p>枝节点:</p>
+<pre><code>//向主节点中添加枝节点
+@Override
+public void add(Company c) {
+    list.add(c);
+}
+
+//往下分支的主体类
+Override
+public void show(int depth) {
+    for(int i=0;i&lt;depth;i++) {
+        System.out.printf(&quot;-&quot;);
+    }
+    System.out.println(name);
+    for(Company component:list) {
+        component.show(depth+2);
+    }
+}
+
+@Override
+public void destory(Company c){
+  list.remove(c);
+}
+</code></pre><p>叶节点(没有分支，因此重写add方法但不操作（透明方式）):</p>
+<pre><code>public void add(Company c) {
+    // TODO Auto-generated method stub
+
+}
+
+@Override
+public void show(int depth) {
+    for(int i=0;i&lt;depth;i++) {
+        System.out.printf(&quot;-&quot;);
+    }
+    System.out.println(name);
+}
+
+public void destory(Company c){
+}
+</code></pre></li>
+<li><p>适配器模式:为了使用一些重构会费很大力气的类，利用适配器将其转换为客户所希望的接口。进行复用项目。此为适配器模式</p>
+</li>
+<li><p>策略模式:策略模式定义了算法家族，让他们之间可以互相替换。策略模式封装了变化，可以一定程度的将代码中逻辑判断解耦。</p>
+<ul>
+<li><p>先定义一个抽象类或接口，做算法模板，通过不同实现类得到不同算法家族</p>
+<p>接口:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface StratagemMode &#123;</span><br><span class="line">	public int suanfa (int a, int b) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现类加法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class StratageAdd implements StratagemMode&#123;</span><br><span class="line">  @Override</span><br><span class="line">  public int suanfa(int a, int b) &#123;</span><br><span class="line">      return a+b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现类减法:</p>
+<p>​</p>
+<pre><code>public class StratageDetail implements StratagemMode{
+  @Override
+  public int suanfa(int a, int b) {
+      return a-b;
+  }
+}s
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>设置CashContext为管理算法家族的类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private StratagemMode sm;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public CashContext(String type) &#123;</span><br><span class="line">	switch(type) &#123;</span><br><span class="line">	case &quot;加法&quot;: sm = new StratageAdd();break;</span><br><span class="line">	case &quot;减法&quot;: sm = new StratageDetail();break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public int jisuan(int a, int b) &#123;</span><br><span class="line">	return sm.suanfa(a, b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>静态工厂</p>
+<p>总结:</p>
+<p>1.防止对象被实例化使用时，可以将构造器设置为private类型的。</p>
+<p>2.利用静态工厂方法代替构造器</p>
+<p><strong>利用静态工厂方法可以保证获取对象时不必每次都创建一个新对象(比如单例模式)</strong></p>
+<p>单例模式:</p>
+<p>Class Test{</p>
+<p>Private Test(){</p>
+<p>}</p>
+</li>
+</ul>
+<p>  Public static final Test test = new Test();</p>
+<p>  Public static Test getInstance(){</p>
+<p>  Return test;</p>
+<p>  }</p>
+<p>  }</p>
+<p>  Class Test{</p>
+<p>  Private Test(){}</p>
+<p>  Public Test test;</p>
+<p>  Public Synchronized static Test getInstance(){</p>
+<p>  If(test == null){</p>
+<p>  test = new Test();</p>
+<p>  }</p>
+<p>  return test;</p>
+<p>  }</p>
+<p>  }</p>
+<p>  利用静态工厂方法可以避免代码复杂的问题，比如</p>
+<p>  Public HashMap&lt;String, Object&gt; obj = new HashMap&lt;String, Object&gt;();</p>
+<p>  可以简化为:</p>
+<p>  Class MyMap&lt;K, V&gt;{</p>
+<p>  <strong>public</strong> <strong>static</strong> &lt;K,V&gt; MyMap&lt;K,V&gt; getInstance(){</p>
+<p>  ​        <strong>return</strong> <strong>new</strong> MyMap&lt;K,V&gt;();</p>
+<p>  }</p>
+<p>  }</p>
+<p>  Class main{</p>
+<p>  Public static void main(String args[]){</p>
+<p>  MyMap&lt;String, Object&gt; myMap = MyMap.getInstance();</p>
+<p>  }</p>
+<p>  }</p>
+<p>  此时不用多次的指明类型参数，可以自行推导出来</p>
+<p>  静态工厂方法的缺点:</p>
+<p>  1，当不存在public或protected类型的构造器时，无法被其他类继承</p>
+<p>  2，没有明确标识的实例化对象的方法，要按照规范命名方法，比如getInstance,newInstance,valueOf 等方法名</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/12/查漏补缺/" rel="next" title="每日一查">
+                <i class="fa fa-chevron-left"></i> 每日一查
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/12/java/线程/" rel="prev" title="线程">
+                线程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://raw.githubusercontent.com/a1186873082/Daliy-Study-LC/Daliy-Study/img/my.png" alt="Li Chen">
+            
+              <p class="site-author-name" itemprop="name">Li Chen</p>
+              <p class="site-description motion-element" itemprop="description">hello every day</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式"><span class="nav-number">1.</span> <span class="nav-text">设计模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OO–面向对象编程的设计原则"><span class="nav-number">2.</span> <span class="nav-text">OO–面向对象编程的设计原则:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用的设计模式"><span class="nav-number">3.</span> <span class="nav-text">常用的设计模式:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Li Chen</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

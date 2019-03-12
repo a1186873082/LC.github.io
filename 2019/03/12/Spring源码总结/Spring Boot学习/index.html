@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="java,">
 
 
 
@@ -80,16 +80,16 @@
 
 
 <meta name="description" content="Spring Boot学习 在Spring 4 -&amp;gt;Spring 4.x的 发展中，提倡使用java文件代替xml文件管理容器，因此推出了2个注解:  @Configuration 相当于以前的Spring 的 xml文件  @Bean 代表以前xml中的 标签 例如: @Configuration //相当于xml文件@ComponentScan(basePackages = “com.s">
-<meta name="keywords" content="lichen">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="李晨的兴趣博客">
+<meta property="og:title" content="Spring Boot学习">
 <meta property="og:url" content="http://yoursite.com/2019/03/12/Spring源码总结/Spring Boot学习/index.html">
 <meta property="og:site_name" content="李晨的兴趣博客">
 <meta property="og:description" content="Spring Boot学习 在Spring 4 -&amp;gt;Spring 4.x的 发展中，提倡使用java文件代替xml文件管理容器，因此推出了2个注解:  @Configuration 相当于以前的Spring 的 xml文件  @Bean 代表以前xml中的 标签 例如: @Configuration //相当于xml文件@ComponentScan(basePackages = “com.s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-17T16:30:00.932Z">
+<meta property="og:updated_time" content="2019-03-12T06:00:18.345Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="李晨的兴趣博客">
+<meta name="twitter:title" content="Spring Boot学习">
 <meta name="twitter:description" content="Spring Boot学习 在Spring 4 -&amp;gt;Spring 4.x的 发展中，提倡使用java文件代替xml文件管理容器，因此推出了2个注解:  @Configuration 相当于以前的Spring 的 xml文件  @Bean 代表以前xml中的 标签 例如: @Configuration //相当于xml文件@ComponentScan(basePackages = “com.s">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title> | 李晨的兴趣博客</title>
+  <title>Spring Boot学习 | 李晨的兴趣博客</title>
   
 
 
@@ -283,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">Spring Boot学习</h1>
         
 
         <div class="post-meta">
@@ -295,7 +295,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-12T12:51:36+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-12T20:39:49+08:00">
                 2019-03-12
               </time>
             
@@ -305,6 +305,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -395,8 +417,8 @@ public static void main(String[] args) {
 </ul>
 </li>
 <li><p>SpringBootApplication是一个组合注解，内置注解如下图:</p>
-<pre><code>@Target(ElementType.TYPE)
-@Retention(RetentionPolicy.RUNTIME)
+<p> @Target(ElementType.TYPE)</p>
+<pre><code>@Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
 @SpringBootConfiguration
@@ -454,6 +476,12 @@ public static void main(String[] args) {
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
 
       
       
@@ -463,8 +491,8 @@ public static void main(String[] args) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/12/jvm虚拟机/JVM性能调优/" rel="next" title>
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2019/03/12/java/数组/" rel="next" title="数组">
+                <i class="fa fa-chevron-left"></i> 数组
               </a>
             
           </div>
@@ -472,10 +500,6 @@ public static void main(String[] args) {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/12/查漏补缺/" rel="prev" title="每日一查">
-                每日一查 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -554,7 +578,7 @@ public static void main(String[] args) {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -565,7 +589,7 @@ public static void main(String[] args) {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -576,7 +600,7 @@ public static void main(String[] args) {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
