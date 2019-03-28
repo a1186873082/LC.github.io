@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="李晨的兴趣博客">
 <meta property="og:description" content="Linux命令总结: 统计字符串在文件中出现的次数: 有以下三种方式:  使用grep命令:grep -o ‘字符串’ file | wc -l 使用awk命令进行统计: awk -v RS=”@#$j” ‘{print gsub(/字符串/,”&amp;amp;”)}’file 另一种awk命令:awk ‘{s+=gsub(/字符串/,”&amp;amp;”)}END{print s}’ file   显示日志">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-12T04:17:57.486Z">
+<meta property="og:updated_time" content="2019-03-28T16:45:54.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux命令">
 <meta name="twitter:description" content="Linux命令总结: 统计字符串在文件中出现的次数: 有以下三种方式:  使用grep命令:grep -o ‘字符串’ file | wc -l 使用awk命令进行统计: awk -v RS=”@#$j” ‘{print gsub(/字符串/,”&amp;amp;”)}’file 另一种awk命令:awk ‘{s+=gsub(/字符串/,”&amp;amp;”)}END{print s}’ file   显示日志">
@@ -347,6 +347,14 @@
 <li>tail -n 200 file。</li>
 </ul>
 </li>
+<li><p>查找日志文件中的关键字,以及关键后100行,或关键字前100行</p>
+<ul>
+<li>查找关键字:cat file | grep ‘关键字’ </li>
+<li>查找关键字后100行:cat file | grep ‘关键字’  -a100 </li>
+<li>查找关键字前100行:cat file | grep ‘关键字’  -b100 </li>
+<li>查找关键字前后50行:cat file | grep ‘关键字’ -c100</li>
+</ul>
+</li>
 </ol>
 
       
@@ -469,7 +477,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
