@@ -413,11 +413,6 @@
 <li><p><em>switch(){}分支语句中如果其中一个分支没有break;终止，则会继续进行下去。在jdk1.7以后，switch(x)中x可以为字符串 ，在1.7以前x只能为byte,short,char,int</em></p>
 <p>switch(){}分支语句中，switch第一次进入case语句的地方为()中的数字</p>
 </li>
-<li><p><strong>ceil,floor,round的区别</strong>：</p>
-<p>ceil，大于等于该值的最小一个整数</p>
-<p>floor,小鱼等于该值的最大一个整数</p>
-<p>round,离该值最近的一个整数</p>
-</li>
 <li><p><strong>ThreadLocal(线程变量):</strong></p>
 <p>1、线程变量是为每一个线程创建一个本地副本，可以实现线程内部的资源共享，而线程外部是互斥的，</p>
 <p>2、ThreadLocal是以空间换时间，而线程同步是以时间换空间。</p>
@@ -427,13 +422,20 @@
 </li>
 <li><p><strong>引用传递中，如果对引用进行修改，不会影响原对象，只有对引用内部的值进行修改，才会影响原对象。</strong></p>
 </li>
-<li><p><strong>private方法在本类中可以使用，无论用什么方法进行调用。。</strong></p>
-</li>
 <li><p>java属于解释性的语言，在运行时才会执行指令，且低版本的jvm不能运行高版本的java代码</p>
 </li>
-<li><p>==在比较基本数据类型时，比较的是两边的内容，float a = 2.0f,long b = 2l;a==b为 true</p>
-</li>
 <li><p>整数型默认为int型，小数型默认为double型</p>
+</li>
+<li><p>泛型的擦除，java的泛型在编译时有效，在运行时期会被删除，也就是说所有的泛型参数类型在编译后都会被清除掉，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class Test&#123;</span><br><span class="line">  public void listMethod(List&lt;String&gt; a)&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">  public void listMethod(List&lt;Object&gt; b)&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码在运行时会报错，因为运行时泛型擦除后的方法都为listMethod(List)</p>
+<p>所以得到结果:</p>
+<ul>
+<li>List<string>、List<t> 擦除后类型为List。</t></string></li>
+<li>List<string>[]、List<t>[] 擦除后类型为List[].</t></string></li>
+<li>List&lt;? extend E&gt;、List&lt;? super E&gt; 擦除后类型为List<e></e></li>
+<li>List<t extend serialzable & cloneable>擦除后类型为 List<serialzable></serialzable></t></li>
+</ul>
 </li>
 <li><p>c++知识点集合:</p>
 <p>(1). 公有继承的公有成员，可以直接访问</p>
@@ -446,8 +448,6 @@
 <p>Math.floor代表地板:Math.floor(11.8)=11.0;</p>
 </li>
 <li><p>使用super()或者this()方法是必须放在构造函数的第一行，this()中存在调用super(),所以this()和super()不能出现在同一个构造函数中。</p>
-</li>
-<li><p>接口可以多继承，类只能单继承。</p>
 </li>
 <li><p>例如: i = i++;这种表达式执行完后，i为多少，实际上就是为i的初始化值，因为相当于一开始将i设置到一个temp临时变量中。</p>
 </li>
@@ -499,8 +499,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/12/restful/" rel="next" title="restful">
-                <i class="fa fa-chevron-left"></i> restful
+              <a href="/2019/03/12/Linux命令/" rel="next" title="Linux命令">
+                <i class="fa fa-chevron-left"></i> Linux命令
               </a>
             
           </div>
@@ -509,8 +509,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/12/Spring源码总结/SpringMVC入门篇/" rel="prev" title="Spring MVC">
-                Spring MVC <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/12/java/数组/" rel="prev" title="数组">
+                数组 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
