@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="李晨的兴趣博客">
 <meta property="og:description" content="nginx配置学习:最近比较上心服务器的配置，尤其是用nginx实现负载均衡和反向代理 步骤:  首先，在服务器的/etc/nginx目录下创建文件nginx.conf，用作nginx的基本配置 123456789101112131415161718192021222324252627282930313233343536373839404142434445#运行用户user nginx;#启动进程">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-28T17:18:35.864Z">
+<meta property="og:updated_time" content="2019-03-30T14:46:06.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx配置学习">
 <meta name="twitter:description" content="nginx配置学习:最近比较上心服务器的配置，尤其是用nginx实现负载均衡和反向代理 步骤:  首先，在服务器的/etc/nginx目录下创建文件nginx.conf，用作nginx的基本配置 123456789101112131415161718192021222324252627282930313233343536373839404142434445#运行用户user nginx;#启动进程">
@@ -359,18 +359,162 @@
 <p>步骤:</p>
 <ol>
 <li><p>首先，在服务器的/etc/nginx目录下创建文件nginx.conf，用作nginx的基本配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">#运行用户</span><br><span class="line">user nginx;</span><br><span class="line">#启动进程，自动</span><br><span class="line">worker_processes auto;</span><br><span class="line">#错误日志输出</span><br><span class="line">error_log /var/log/nginx/error.log;</span><br><span class="line"># pid</span><br><span class="line">pid /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"># Load dynamic modules. See /usr/share/nginx/README.dynamic.</span><br><span class="line">include /usr/share/nginx/modules/*.conf;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    #单个后台worker process进程的最大并发链接数</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">	#设置日志格式</span><br><span class="line">    log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">                      &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">                      &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</span><br><span class="line"></span><br><span class="line">    access_log  /var/log/nginx/access.log  main;</span><br><span class="line">	#sendfile指令指定nginx是否调用sendfile函数(zero copy方式)来输出文件</span><br><span class="line">    #一般普通应用都设置为on，如果用来进行下载等应用磁盘IO重负载应用，可设置为off</span><br><span class="line">    sendfile            on;</span><br><span class="line">    tcp_nopush          on;</span><br><span class="line">    </span><br><span class="line">    #连接超时时间</span><br><span class="line">    tcp_nodelay         on;</span><br><span class="line">    keepalive_timeout   65;</span><br><span class="line">    types_hash_max_size 2048;</span><br><span class="line">    </span><br><span class="line">	#设置mime类型，类型由mime.types文件定义</span><br><span class="line">    include             /etc/nginx/mime.types;</span><br><span class="line">    default_type        application/octet-stream;</span><br><span class="line"></span><br><span class="line">    # Load modular configuration files from the /etc/nginx/conf.d directory.</span><br><span class="line">    # See http://nginx.org/en/docs/ngx_core_module.html#include</span><br><span class="line">    # for more information.</span><br><span class="line">    #引入虚拟主机的配置</span><br><span class="line">    include /etc/nginx/conf.d/*.conf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">#运行用户</span><br><span class="line">user nginx;</span><br><span class="line">#启动进程，自动</span><br><span class="line">worker_processes auto;</span><br><span class="line">#错误日志输出</span><br><span class="line">error_log /var/log/nginx/error.log;</span><br><span class="line"># pid</span><br><span class="line">pid /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"># Load dynamic modules. See /usr/share/nginx/README.dynamic.</span><br><span class="line">include /usr/share/nginx/modules/*.conf;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    #单个后台worker process进程的最大并发链接数</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">   ##设置日志格式</span><br><span class="line">   log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">                     &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">                     &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</span><br><span class="line"></span><br><span class="line">   access_log  /var/log/nginx/access.log  main;</span><br><span class="line">   </span><br><span class="line">   ##sendfile指令指定nginx是否调用sendfile函数(zero copy方式)来输出文件</span><br><span class="line">   ##一般普通应用都设置为on，如果用来进行下载等应用磁盘IO重负载应用，可设置为off</span><br><span class="line">   sendfile            on;</span><br><span class="line">   tcp_nopush          on;</span><br><span class="line">   </span><br><span class="line">   ##连接超时时间</span><br><span class="line">   tcp_nodelay         on;</span><br><span class="line">   keepalive_timeout   65;</span><br><span class="line">   types_hash_max_size 2048;</span><br><span class="line">   </span><br><span class="line">   ##设置mime类型，类型由mime.types文件定义</span><br><span class="line">   include             /etc/nginx/mime.types;</span><br><span class="line">   default_type        application/octet-stream;</span><br><span class="line">   </span><br><span class="line">   # Load modular configuration files from the /etc/nginx/conf.d directory.</span><br><span class="line">   # See http://nginx.org/en/docs/ngx_core_module.html#include</span><br><span class="line">   # for more information.</span><br><span class="line">   #引入虚拟主机的配置</span><br><span class="line">   include /etc/nginx/conf.d/*.conf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 配置mime.types文件</span><br><span class="line"></span><br><span class="line">   * mime.types文件：也叫该资源的媒体类型，通常是通过HTTP协议，由web服务器告知浏览器。更准确的说，是通过Content-Type来表示的，例如:Content-Type: text/html,表示内容是text/html类型，也就是超文本文件，mime.types文件中内容不是自己指定的，而是有一套规范。如下</span><br></pre></td></tr></table></figure>
+<p>  types {</p>
+<pre><code>text/html                             html htm shtml;
+text/css                              css;
+text/xml                              xml;
+image/gif                             gif;
+image/jpeg                            jpeg jpg;
+application/javascript                js;
+application/atom+xml                  atom;
+application/rss+xml                   rss;
+
+text/mathml                           mml;
+text/plain                            txt;
+text/vnd.sun.j2me.app-descriptor      jad;
+text/vnd.wap.wml                      wml;
+text/x-component                      htc;
+
+image/png                             png;
+image/tiff                            tif tiff;
+image/vnd.wap.wbmp                    wbmp;
+image/x-icon                          ico;
+image/x-jng                           jng;
+image/x-ms-bmp                        bmp;
+image/svg+xml                         svg svgz;
+image/webp                            webp;
+
+application/font-woff                 woff;
+application/java-archive              jar war ear;
+application/json                      json;
+application/mac-binhex40              hqx;
+application/msword                    doc;
+application/pdf                       pdf;
+application/postscript                ps eps ai;
+application/rtf                       rtf;
+application/vnd.apple.mpegurl         m3u8;
+application/vnd.ms-excel              xls;
+application/vnd.ms-fontobject         eot;
+application/vnd.ms-powerpoint         ppt;
+application/vnd.wap.wmlc              wmlc;
+application/vnd.google-earth.kml+xml  kml;
+application/vnd.google-earth.kmz      kmz;
+application/x-7z-compressed           7z;
+application/x-cocoa                   cco;
+application/x-java-archive-diff       jardiff;
+application/x-java-jnlp-file          jnlp;
+application/x-makeself                run;
+application/x-perl                    pl pm;
+application/x-pilot                   prc pdb;
+application/x-rar-compressed          rar;
+application/x-redhat-package-manager  rpm;
+application/x-sea                     sea;
+application/x-shockwave-flash         swf;
+application/x-stuffit                 sit;
+application/x-tcl                     tcl tk;
+application/x-x509-ca-cert            der pem crt;
+application/x-xpinstall               xpi;
+application/xhtml+xml                 xhtml;
+application/xspf+xml                  xspf;
+application/zip                       zip;
+
+application/octet-stream              bin exe dll;
+application/octet-stream              deb;
+application/octet-stream              dmg;
+application/octet-stream              iso img;
+application/octet-stream              msi msp msm;
+
+application/vnd.openxmlformats-officedocument.wordprocessingml.document    docx;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet          xlsx;
+application/vnd.openxmlformats-officedocument.presentationml.presentation  pptx;
+
+audio/midi                            mid midi kar;
+audio/mpeg                            mp3;
+audio/ogg                             ogg;
+audio/x-m4a                           m4a;
+audio/x-realaudio                     ra;
+
+video/3gpp                            3gpp 3gp;
+video/mp2t                            ts;
+video/mp4                             mp4;
+video/mpeg                            mpeg mpg;
+video/quicktime                       mov;
+video/webm                            webm;
+video/x-flv                           flv;
+video/x-m4v                           m4v;
+video/x-mng                           mng;
+video/x-ms-asf                        asx asf;
+video/x-ms-wmv                        wmv;
+video/x-msvideo                       avi;
+</code></pre><p>  }</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 配置虚拟主机，此前虚拟主机是引用来的:include /etc/nginx/conf.d/*.conf;.所以引入了/etc/nginx/conf.d目录下的所有.conf文件，在这里举例一个虚拟主机的配置</span><br></pre></td></tr></table></figure>
+<p>#设置虚拟主机<br>server {</p>
+<pre><code> #侦听80端口
+listen       80;
+listen       [::]:80;
+#定义域名访问
+server_name  alpha.wq.ininin.com alpha.wqsaas.ininin.com;
+#定义服务器的默认网站根目录位置
+root         /usr/share/nginx/html;
+
+# Load configuration files for the default server block.
+include /etc/nginx/default.d/*.conf;
+
+location / {
+    #设置反向代理到的地址
+    proxy_pass http://10.10.103.170:3000;
+    proxy_set_header  Host             $host;
+    proxy_set_header  X-Real-IP        $remote_addr;
+    proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
+}
+#定义资源找不到页面
+error_page 404 /404.html;
+    location = /40x.html {
+}
+#定义错误提示页面
+error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+}
+</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. 配置负载均衡功能,代码演示</span><br></pre></td></tr></table></figure>
+<p>upstream tomcat1 {<br>  server 192.168.25.148:8080;<br>  server 192.168.25.148:8082;<br>}</p>
+<p>server {<br>  listen       80;<br>  server_name  <a href="http://www.sina.com.cn" target="_blank" rel="noopener">www.sina.com.cn</a>;<br>  location / {</p>
+<pre><code>proxy_pass   http://tomcat1;
+index  index.html index.htm;
+</code></pre><p>  }<br>}</p>
+<p>upstream tomcat2 {<br>  server 192.168.25.148:8081;<br>  server 192.168.25.148:8084 weight=2;<br>}</p>
+<p>server {<br>  listen       80;<br>  server_name  <a href="http://www.sohu.com" target="_blank" rel="noopener">www.sohu.com</a>;</p>
+<p>  location / {</p>
+<pre><code>proxy_pass   http://tomcat2;
+index  index.html index.htm;
+</code></pre><p>  }<br>}<br><code>`</code></p>
+<p>​</p>
 </li>
-<li><p>配置mime.types文件</p>
+</ol>
+<p>nginx知识点汇总:</p>
+<ol>
+<li><p><strong>nginx是如何发挥虚拟主机的功能的</strong></p>
+<p>像阿里云，一台服务器的租赁价格是非常贵了，对于小网站来说，成本太高。这个时候，可以合租，即多家网站共用一台服务器。每一个网站都要对应一台主机，这个时候就要用到服务器的虚拟主机功能。</p>
+<p>nginx可以通过配置多个server来配置多个虚拟主机，一个server对应一个虚拟主机，每个虚拟主机都可以部署各自的网站，各个主机的ip地址都是一样的。但是每个主机的域名会不同，即每个主机都可以有各自独立的域名和端口号。一般的，都是各个虚拟主机在域名不同情况下，共同占用80这个端口号。然后根据域名来区分客户端到底访问的是哪个网站。这不同于反向代理和负载均衡，反向代理时nginx只是一个中转站，客户端不能直接对web服务器发送请求，而是先发给nginx，然后再有nginx转发给web服务器。同样，web服务器返回响应也要先发给nginx服务器，然后转发给客户端。</p>
+</li>
+<li><p><strong>什么是反向代理</strong></p>
+<p>反向代理是相对于正向代理而言的，正向代理服务于客户端，反向代理服务于服务端。反向代理服务器位于客户端浏览器和web服务器之间，客户端不能直接向web服务器发请求，所有的请求都必须先发给反向代理服务器，然后由反向代理服务器转发给web服务器，同样，web服务器返回的响应也要先发给反向代理服务器，然后再转发给客户端。</p>
+<p>反向代理的作用:</p>
 <ul>
-<li><p>mime.types文件：也叫该资源的媒体类型，通常是通过HTTP协议，由web服务器告知浏览器。更准确的说，是通过Content-Type来表示的，例如:Content-Type: text/html,表示内容是text/html类型，也就是超文本文件，mime.types文件中内容不是自己指定的，而是有一套规范。如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">types &#123;</span><br><span class="line">    text/html                             html htm shtml;</span><br><span class="line">    text/css                              css;</span><br><span class="line">    text/xml                              xml;</span><br><span class="line">    image/gif                             gif;</span><br><span class="line">    image/jpeg                            jpeg jpg;</span><br><span class="line">    application/javascript                js;</span><br><span class="line">    application/atom+xml                  atom;</span><br><span class="line">    application/rss+xml                   rss;</span><br><span class="line"></span><br><span class="line">    text/mathml                           mml;</span><br><span class="line">    text/plain                            txt;</span><br><span class="line">    text/vnd.sun.j2me.app-descriptor      jad;</span><br><span class="line">    text/vnd.wap.wml                      wml;</span><br><span class="line">    text/x-component                      htc;</span><br><span class="line"></span><br><span class="line">    image/png                             png;</span><br><span class="line">    image/tiff                            tif tiff;</span><br><span class="line">    image/vnd.wap.wbmp                    wbmp;</span><br><span class="line">    image/x-icon                          ico;</span><br><span class="line">    image/x-jng                           jng;</span><br><span class="line">    image/x-ms-bmp                        bmp;</span><br><span class="line">    image/svg+xml                         svg svgz;</span><br><span class="line">    image/webp                            webp;</span><br><span class="line"></span><br><span class="line">    application/font-woff                 woff;</span><br><span class="line">    application/java-archive              jar war ear;</span><br><span class="line">    application/json                      json;</span><br><span class="line">    application/mac-binhex40              hqx;</span><br><span class="line">    application/msword                    doc;</span><br><span class="line">    application/pdf                       pdf;</span><br><span class="line">    application/postscript                ps eps ai;</span><br><span class="line">    application/rtf                       rtf;</span><br><span class="line">    application/vnd.apple.mpegurl         m3u8;</span><br><span class="line">    application/vnd.ms-excel              xls;</span><br><span class="line">    application/vnd.ms-fontobject         eot;</span><br><span class="line">    application/vnd.ms-powerpoint         ppt;</span><br><span class="line">    application/vnd.wap.wmlc              wmlc;</span><br><span class="line">    application/vnd.google-earth.kml+xml  kml;</span><br><span class="line">    application/vnd.google-earth.kmz      kmz;</span><br><span class="line">    application/x-7z-compressed           7z;</span><br><span class="line">    application/x-cocoa                   cco;</span><br><span class="line">    application/x-java-archive-diff       jardiff;</span><br><span class="line">    application/x-java-jnlp-file          jnlp;</span><br><span class="line">    application/x-makeself                run;</span><br><span class="line">    application/x-perl                    pl pm;</span><br><span class="line">    application/x-pilot                   prc pdb;</span><br><span class="line">    application/x-rar-compressed          rar;</span><br><span class="line">    application/x-redhat-package-manager  rpm;</span><br><span class="line">    application/x-sea                     sea;</span><br><span class="line">    application/x-shockwave-flash         swf;</span><br><span class="line">    application/x-stuffit                 sit;</span><br><span class="line">    application/x-tcl                     tcl tk;</span><br><span class="line">    application/x-x509-ca-cert            der pem crt;</span><br><span class="line">    application/x-xpinstall               xpi;</span><br><span class="line">    application/xhtml+xml                 xhtml;</span><br><span class="line">    application/xspf+xml                  xspf;</span><br><span class="line">    application/zip                       zip;</span><br><span class="line"></span><br><span class="line">    application/octet-stream              bin exe dll;</span><br><span class="line">    application/octet-stream              deb;</span><br><span class="line">    application/octet-stream              dmg;</span><br><span class="line">    application/octet-stream              iso img;</span><br><span class="line">    application/octet-stream              msi msp msm;</span><br><span class="line"></span><br><span class="line">    application/vnd.openxmlformats-officedocument.wordprocessingml.document    docx;</span><br><span class="line">    application/vnd.openxmlformats-officedocument.spreadsheetml.sheet          xlsx;</span><br><span class="line">    application/vnd.openxmlformats-officedocument.presentationml.presentation  pptx;</span><br><span class="line"></span><br><span class="line">    audio/midi                            mid midi kar;</span><br><span class="line">    audio/mpeg                            mp3;</span><br><span class="line">    audio/ogg                             ogg;</span><br><span class="line">    audio/x-m4a                           m4a;</span><br><span class="line">    audio/x-realaudio                     ra;</span><br><span class="line"></span><br><span class="line">    video/3gpp                            3gpp 3gp;</span><br><span class="line">    video/mp2t                            ts;</span><br><span class="line">    video/mp4                             mp4;</span><br><span class="line">    video/mpeg                            mpeg mpg;</span><br><span class="line">    video/quicktime                       mov;</span><br><span class="line">    video/webm                            webm;</span><br><span class="line">    video/x-flv                           flv;</span><br><span class="line">    video/x-m4v                           m4v;</span><br><span class="line">    video/x-mng                           mng;</span><br><span class="line">    video/x-ms-asf                        asx asf;</span><br><span class="line">    video/x-ms-wmv                        wmv;</span><br><span class="line">    video/x-msvideo                       avi;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li><strong>保护网站安全</strong>:客户端所有请求都会先发给反向代理服务器，再由反向代理服务器发给web服务器，客户端无法直接访问web服务器。</li>
+<li><strong>缓存网站的静态资源，提高网站的响应速度</strong>:当用户第一次访问静态内容时，静态资源就会被缓存到反向代理服务器上，这样当其他用户访问该静态内容时，就可以直接从反向代理服务器返回，从而加快web请求速度，减少web服务器的压力</li>
+<li><strong>负载均衡</strong>:反向代理位于web服务器前面，一般都会有提供负载均衡功能，因为这个位置也是负载均衡服务器的位置</li>
 </ul>
 </li>
-<li><p>配置虚拟主机，此前虚拟主机是引用来的:include /etc/nginx/conf.d/*.conf;.所以引入了/etc/nginx/conf.d目录下的所有.conf文件，在这里举例一个虚拟主机的配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#设置虚拟主机</span><br><span class="line">server &#123;</span><br><span class="line"> 	#侦听80端口</span><br><span class="line">    listen       80;</span><br><span class="line">    listen       [::]:80;</span><br><span class="line">    #定义域名访问</span><br><span class="line">    server_name  alpha.wq.ininin.com alpha.wqsaas.ininin.com;</span><br><span class="line">    #定义服务器的默认网站根目录位置</span><br><span class="line">    root         /usr/share/nginx/html;</span><br><span class="line"></span><br><span class="line">    # Load configuration files for the default server block.</span><br><span class="line">    include /etc/nginx/default.d/*.conf;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        #设置反向代理到的地址</span><br><span class="line">        proxy_pass http://10.10.103.170:3000;</span><br><span class="line">        proxy_set_header  Host             $host;</span><br><span class="line">        proxy_set_header  X-Real-IP        $remote_addr;</span><br><span class="line">        proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;</span><br><span class="line">    &#125;</span><br><span class="line">	#定义资源找不到页面</span><br><span class="line">    error_page 404 /404.html;</span><br><span class="line">        location = /40x.html &#123;</span><br><span class="line">    &#125;</span><br><span class="line">	#定义错误提示页面</span><br><span class="line">    error_page 500 502 503 504 /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​</p>
+<li><p>什么是正向代理？</p>
+<p>答：正向代理是针对客户端而言的。客户端想访问一个网站，但上不了网，可是客户端却能访问一个叫做代理服务器的东西，代理服务器可以帮助客户端上网。客户端先将请求发给代理服务器，代理服务器再将请求转发给网站，网站的响应结果先发给代理服务器，然后再由代理服务器转发给客户端。</p>
+<p><strong>简单来说，正向代理就是指代理服务器帮助客户端上网。</strong></p>
+</li>
+<li><p><strong>什么是负载均衡</strong></p>
+<p>负载均衡指的是多个服务器共同完成一件事情，主要为了分摊服务器的压力。nginx实现负载均衡指的是将请求转发给服务器集群，nginx默认处理负载均衡的方式是轮询，我们可以通过weight来调整权重</p>
+<p><strong>博客笔记:</strong>反向代理和负载均衡是两个功能，但是并不是完全分开的，要想实现负载均衡，你必须要先实现反向代理的功能，当反向代理服务器代理的是一个服务器集群时，才能够实现负载均衡的功能，如果只代理一台服务器，那是没有办法实现负载均衡的。</p>
 </li>
 </ol>
 
@@ -403,8 +547,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/12/Spring源码总结/SpringMVC入门篇/" rel="next" title="Spring MVC">
-                <i class="fa fa-chevron-left"></i> Spring MVC
+              <a href="/2019/03/12/设计模式/" rel="next" title="设计模式">
+                <i class="fa fa-chevron-left"></i> 设计模式
               </a>
             
           </div>
