@@ -266,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/git学习/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/restful/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Li Chen">
@@ -285,7 +285,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/11/git学习/" itemprop="url">git操作</a></h1>
+                <a class="post-title-link" href="/2019/03/12/restful/" itemprop="url">restful</a></h1>
         
 
         <div class="post-meta">
@@ -297,8 +297,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T20:39:49+08:00">
-                2019-03-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-12T00:00:00+08:00">
+                2019-03-12
               </time>
             
 
@@ -307,28 +307,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -359,165 +337,19 @@
       
         
           
-          git学习1. git指令:###Git基础指令
-(1) git pull：git pull origin master,将origin版本库中的代码更新到本地的master分支
-(2) git add: 将当前更改或者新增的文件加入到git索引中，加入到索引中代表记入了git版本历史中，这个是进行
+          restful 的概念REST（表述性状态转移（Representational State Transfer,REST）的主要原则:
+
+网络上的事物都能被抽象成为资源
+每个资源都有一个唯一的资源标识符URI;
+使用标准方法操作资源;
+所有的操作都是无状态的;
+通过缓存提高性能
+
+翻译成我认为的原则
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/11/git学习/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/图解https/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Li Chen">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://raw.githubusercontent.com/a1186873082/Daliy-Study-LC/Daliy-Study/img/my.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="李晨的兴趣博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/11/图解https/" itemprop="url">图解https</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T20:39:49+08:00">
-                2019-03-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/http/" itemprop="url" rel="index">
-                    <span itemprop="name">http</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          [TOC]
-HTTP报文报文:是HTTP的基本组成单位，由8位字节流组成，通过HTTP通信传输
-实体:作为请求或响应的有效载荷数据被传输,其内容由实体首部和实体主体组成
-提高传输效率1,通过压缩传输的内容编码，常用的有:gzip,compress,deflate,identity(不进行编码)等
-2
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/11/图解https/#more" rel="contents">
+            <a class="btn" href="/2019/03/12/restful/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -719,7 +551,7 @@ HTTP报文报文:是HTTP的基本组成单位，由8位字节流组成，通过H
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/IntelliJ IDEAcha 常用快捷键列表/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/java/数据结构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Li Chen">
@@ -738,7 +570,7 @@ HTTP报文报文:是HTTP的基本组成单位，由8位字节流组成，通过H
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/11/IntelliJ IDEAcha 常用快捷键列表/" itemprop="url">IntelliJ IDEA</a></h1>
+                <a class="post-title-link" href="/2019/03/11/java/数据结构/" itemprop="url">数据结构</a></h1>
         
 
         <div class="post-meta">
@@ -812,11 +644,170 @@ HTTP报文报文:是HTTP的基本组成单位，由8位字节流组成，通过H
       
         
           
-          IntelliJ IDEA 常用快捷键列表Ctrl+Shift + Enter，语句完成“！”，否定完成，输入表达式时按 “！”键Ctrl+E，最近的文件Ctrl+Shift+E，最近更改的文件Shift+Click，可以关闭文件Ctrl+[ OR ]，可以跑到大括号的开头与结尾Ctrl+F12，可
+          数据结构
+树形结构:
+
+二叉树:前序遍历，中序遍历，后序遍历.
+
+前序遍历:先遍历根节点，然后遍历左子树，后遍历右子树。如下所示排序为:ABDHIECFG
+中序遍历:先遍历左子树，然后遍历根节点，后遍历右子树。如下所示排序为:HDIBEAFCG
+后序遍历:先遍历左子树，然后遍历右子树，后遍历根节点。
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/11/IntelliJ IDEAcha 常用快捷键列表/#more" rel="contents">
+            <a class="btn" href="/2019/03/11/java/数据结构/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/图解https/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Li Chen">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://raw.githubusercontent.com/a1186873082/Daliy-Study-LC/Daliy-Study/img/my.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李晨的兴趣博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/11/图解https/" itemprop="url">图解https</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T20:39:49+08:00">
+                2019-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/http/" itemprop="url" rel="index">
+                    <span itemprop="name">http</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          [TOC]
+HTTP报文报文:是HTTP的基本组成单位，由8位字节流组成，通过HTTP通信传输
+实体:作为请求或响应的有效载荷数据被传输,其内容由实体首部和实体主体组成
+提高传输效率1,通过压缩传输的内容编码，常用的有:gzip,compress,deflate,identity(不进行编码)等
+2
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/11/图解https/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1058,7 +1049,7 @@ jvm在堆中内存有以下区域:持久带，年轻带与年老带:
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1069,7 +1060,7 @@ jvm在堆中内存有以下区域:持久带，年轻带与年老带:
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1080,7 +1071,7 @@ jvm在堆中内存有以下区域:持久带，年轻带与年老带:
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

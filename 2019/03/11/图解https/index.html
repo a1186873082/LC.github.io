@@ -90,7 +90,7 @@
 <meta property="og:image" content="c:/Users/ADMINI~1/AppData/Local/Temp/1522508077813.png">
 <meta property="og:image" content="c:/Users/ADMINI~1/AppData/Local/Temp/1522508412581.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/11/img/tcp%20four%20refuse.jpg">
-<meta property="og:updated_time" content="2019-03-12T06:02:29.332Z">
+<meta property="og:updated_time" content="2019-04-21T11:23:21.318Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图解https">
 <meta name="twitter:description" content="[TOC] HTTP报文报文:是HTTP的基本组成单位，由8位字节流组成，通过HTTP通信传输 实体:作为请求或响应的有效载荷数据被传输,其内容由实体首部和实体主体组成 提高传输效率1,通过压缩传输的内容编码，常用的有:gzip,compress,deflate,identity(不进行编码)等 2,通过分割实体主体进行传输 多部分对象集合多部分对象集合包含对象如下: 1.mutipart/for">
@@ -492,6 +492,8 @@
 <h2 id="详细分类"><a href="#详细分类" class="headerlink" title="详细分类:"></a>详细分类:</h2><p>2XX:</p>
 <ol>
 <li>200 OK：表示客户端发过来的请求被服务端正常处理了</li>
+<li>201 :给post方法用，响应体内容为源数据，代表创建成功</li>
+<li>202 :/post/put/delete ，响应体无，代表请求已接受</li>
 <li>204 No Content：表示客户端发过来的请求被服务器成功处理，但是返回中不包含实体的主体部分</li>
 <li>206 Partial Content：表示客户端发过来的请求有范围设定，由响应报文中 Content-Range指定范围的实体内容</li>
 </ol>
@@ -509,6 +511,10 @@
 <li>401 Unauthorized：请求报文需要有通过Http认证，认证失败返回该错误码</li>
 <li>403 Forbidden：请求资源被服务器拒绝了，比如当未授权的ip地址试图去访问</li>
 <li>404 Not Found：服务器上没有该请求对应的资源</li>
+<li>405 ： 不允许的HTTP方法</li>
+<li>409 ：资源冲突或被锁定</li>
+<li>415 ： 不支持的数据类型或媒体类型</li>
+<li>429 ： 请求过多被限制，比如频繁的发送登录 请求。</li>
 </ol>
 <p>5XX:</p>
 <ol>
@@ -545,8 +551,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/11/java/算法/" rel="next" title="算法">
-                <i class="fa fa-chevron-left"></i> 算法
+              <a href="/2019/03/11/jvm虚拟机/JVM性能调优/" rel="next" title="git操作">
+                <i class="fa fa-chevron-left"></i> git操作
               </a>
             
           </div>
@@ -555,8 +561,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/11/git学习/" rel="prev" title="git操作">
-                git操作 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/11/java/数据结构/" rel="prev" title="数据结构">
+                数据结构 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -636,7 +642,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -647,7 +653,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -658,7 +664,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

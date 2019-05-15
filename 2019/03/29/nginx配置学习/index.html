@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="李晨的兴趣博客">
 <meta property="og:description" content="nginx配置学习:最近比较上心服务器的配置，尤其是用nginx实现负载均衡和反向代理 步骤:  首先，在服务器的/etc/nginx目录下创建文件nginx.conf，用作nginx的基本配置 123456789101112131415161718192021222324252627282930313233343536373839404142434445#运行用户user nginx;#启动进程">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-30T14:46:06.654Z">
+<meta property="og:updated_time" content="2019-03-30T15:32:59.099Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx配置学习">
 <meta name="twitter:description" content="nginx配置学习:最近比较上心服务器的配置，尤其是用nginx实现负载均衡和反向代理 步骤:  首先，在服务器的/etc/nginx目录下创建文件nginx.conf，用作nginx的基本配置 123456789101112131415161718192021222324252627282930313233343536373839404142434445#运行用户user nginx;#启动进程">
@@ -516,6 +516,13 @@ index  index.html index.htm;
 <p>负载均衡指的是多个服务器共同完成一件事情，主要为了分摊服务器的压力。nginx实现负载均衡指的是将请求转发给服务器集群，nginx默认处理负载均衡的方式是轮询，我们可以通过weight来调整权重</p>
 <p><strong>博客笔记:</strong>反向代理和负载均衡是两个功能，但是并不是完全分开的，要想实现负载均衡，你必须要先实现反向代理的功能，当反向代理服务器代理的是一个服务器集群时，才能够实现负载均衡的功能，如果只代理一台服务器，那是没有办法实现负载均衡的。</p>
 </li>
+<li><p><strong>nginx命令汇总</strong></p>
+<p>查看nginx状态: service nginx status</p>
+<p>重新启动: service nginx restart </p>
+<p>无间断重启: service nginx reload </p>
+<p>启动: service nginx start</p>
+<p>停止: service nginx stop</p>
+</li>
 </ol>
 
       
@@ -547,8 +554,8 @@ index  index.html index.htm;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/12/设计模式/" rel="next" title="设计模式">
-                <i class="fa fa-chevron-left"></i> 设计模式
+              <a href="/2019/03/12/java/线程/" rel="next" title="线程">
+                <i class="fa fa-chevron-left"></i> 线程
               </a>
             
           </div>
@@ -556,6 +563,10 @@ index  index.html index.htm;
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/31/WebSocket详解与应用/" rel="prev" title="WebSocket">
+                WebSocket <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -634,7 +645,7 @@ index  index.html index.htm;
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -645,7 +656,7 @@ index  index.html index.htm;
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -656,7 +667,7 @@ index  index.html index.htm;
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
